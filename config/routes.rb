@@ -3,5 +3,6 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
+  resources :welcome
   root :to => 'welcome#index'
 end
