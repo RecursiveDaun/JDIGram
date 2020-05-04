@@ -34,8 +34,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 #HTML and CSS gems
-gem 'haml'
+gem 'haml-rails'
 gem 'bootstrap'
+gem 'autoprefixer-rails'
 
 # Authentication
 gem 'devise'
