@@ -278,7 +278,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-sass
-  google-cloud-storage
+  google-cloud-storage (~> 1.11)
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails

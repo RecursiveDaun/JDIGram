@@ -10,7 +10,8 @@ gem 'pg', '~> 1.0'
 gem 'dotenv-rails'
 # Using ActiveStorage
 gem 'activesupport'
-gem 'google-cloud-storage', require: false
+gem "google-cloud-storage", "~> 1.11", require: false
+# gem 'google-cloud-storage', require: false
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

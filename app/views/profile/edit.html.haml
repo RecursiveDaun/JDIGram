@@ -8,5 +8,5 @@
     = f.text_field :age
   %div{:class => 'upload_photo'}
     = f.label :avatar, 'Upload your photo'
-    = f.file_field :avatar
+    = f.file_field :avatar, id: :profile_avatar
   = f.submit 'Save changes'
