@@ -14,13 +14,7 @@ class ProfileController < ApplicationController
     create_photo
     if @profile.save
       redirect_to action: 'show'
-    else
-      p '===================== Profile errors ======================='
-      p @profile.errors
     end
-
-
-    # redirect_to profile_path(@profile)
   end
 
   def allowed_params
@@ -39,6 +33,5 @@ class ProfileController < ApplicationController
     @photo.type = photo_params.content_type
     @photo.user_profile = @profile
   end
-
-
+  
 end

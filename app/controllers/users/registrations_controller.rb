@@ -6,18 +6,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    p 'into new'
     @user = User.new
   end
 
   # POST /resource
   def create
-    p 'into create'
-    @user = User.create(configure_account_update_params)
+    @user = User.create(allowed_params)
     if @user.errors.empty?
-      p '!!!! User were saved !!!!'
+      redirect_to welcome_index_path
     else
-      p "!!!! Errors: #{@user.errors} !!!!"
+      p @user.errors
     end
   end
 
@@ -53,8 +51,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  # end
+
+  def allowed_params
+    params.require(:user).permit(:email, :password)
   end
 
   # The path used after sign up.
