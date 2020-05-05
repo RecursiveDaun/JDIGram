@@ -1,0 +1,9 @@
+%div{:class => 'div_content'}
+  %div{:class => 'profile_photo_group'}
+    %img= @profile.photos.first
+  %div{:class => 'name_group'}
+    %label Username
+    %label= @profile.name
+  %div{:class => 'age_group'}
+    %label Age
+    %label= @profile.age

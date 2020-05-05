@@ -1,0 +1,28 @@
+// Place all the styles related to the Profile controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.div_content {
+  position: absolute;
+  bottom: 10%;
+  top: 10%;
+  right: 10%;
+  left: 10%;
+
+  width: 80%;
+  height: 80%;
+
+  border: 1px solid lightsalmon;
+  border-radius: 5px;
+
+  text-align: center;
+  alignment: center;
+
+}
+
+.profile_photo_group,
+.name_group,
+.age_group{
+  display: block;
+}
+

@@ -1,0 +1,12 @@
+%h1{:align => 'center'} Edit your profile
+= form_for @profile, url: profile_path do |f|
+  %div{:class => 'name_group'}
+    = f.label :name
+    = f.text_field :name
+  %div{:class => 'age_group'}
+    = f.label :age
+    = f.text_field :age
+  %div{:class => 'upload_photo'}
+    = f.label :data, 'Upload your photo'
+    = f.file_field :data
+  = f.submit 'Save changes'
