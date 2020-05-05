@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 gem 'bootstrap'
 gem 'autoprefixer-rails'
+gem 'font-awesome-sass'
 
 # Authentication
 gem 'devise'
