@@ -1,12 +1,13 @@
 source 'https://rubygems.org'
 
-ruby "2.4.10"
+ruby "2.5.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.2.1'
 # Using PostgreSQL
 gem 'pg', '~> 1.0'
 gem 'dotenv-rails'
+gem 'activesupport'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

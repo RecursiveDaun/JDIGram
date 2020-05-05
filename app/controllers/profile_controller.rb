@@ -1,7 +1,10 @@
 class ProfileController < ApplicationController
 
   def show
+    p 'Into show'
     @profile = UserProfile.find(params[:id])
+    @photo = @profile.photos.last
+    send_data(@photo.data, :type => @photo.image_type, :filename => "#{@photo.filename}.jpg", :disposition => 'inline')
   end
 
   def edit
@@ -9,9 +12,9 @@ class ProfileController < ApplicationController
   end
 
   def update
-    @profile = UserProfile.create(allowed_params)
-    @profile.user = current_user
+    @profile = UserProfile.find(params[:id])
     create_photo
+    @profile.photos.push(@photo)
     if @profile.save
       redirect_to action: 'show'
     end
@@ -30,8 +33,9 @@ class ProfileController < ApplicationController
     @photo = Photo.new
     @photo.data = photo_params.read
     @photo.filename = photo_params.original_filename
-    @photo.type = photo_params.content_type
+    @photo.image_type = photo_params.content_type
     @photo.user_profile = @profile
+    @photo.save!
   end
-  
+
 end
