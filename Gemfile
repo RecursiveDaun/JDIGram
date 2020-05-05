@@ -4,10 +4,14 @@ ruby "2.5.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
+
 # Using PostgreSQL
 gem 'pg', '~> 1.0'
 gem 'dotenv-rails'
+# Using ActiveStorage
 gem 'activesupport'
+gem 'google-cloud-storage', require: false
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

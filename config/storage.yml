@@ -1,0 +1,5 @@
+local:
+  service: GSC
+  credentials: <%= Rails.root.join("config/secrets/jdigram.json") %>
+  project: JDIGram
+  bucket: jdigram
