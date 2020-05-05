@@ -1,10 +1,13 @@
 class ProfileController < ApplicationController
 
   def show
-    p 'Into show'
     @profile = UserProfile.find(params[:id])
     @photo = @profile.photos.last
-    send_data(@photo.data, :type => @photo.image_type, :filename => "#{@photo.filename}.jpg", :disposition => 'inline')
+    p '====================================================== AVATAR ======================================================'
+    p "avatar is attached: #{@profile.avatar.attached?}"
+    p '====================================================== END AVATAR ======================================================'
+    # if @profile.avatar.attached?
+    #   send_data(@photo.data, :type => @photo.image_type, :filename => "#{@photo.filename}.jpg", :disposition => 'inline')
   end
 
   def edit
@@ -13,15 +16,18 @@ class ProfileController < ApplicationController
 
   def update
     @profile = UserProfile.find(params[:id])
-    create_photo
-    @profile.photos.push(@photo)
+    p '====================================================== AVATAR ======================================================'
+    p @profile.avatar
+    p '====================================================== END AVATAR ======================================================'
+    # create_photo
+    # @profile.photos.push(@photo)
     if @profile.save
       redirect_to action: 'show'
     end
   end
 
   def allowed_params
-    params.require(:user_profile).permit(:age, :name)
+    params.require(:user_profile).permit(:age, :name, :avatar)
   end
 
   def photo_params

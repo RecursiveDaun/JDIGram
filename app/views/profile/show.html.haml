@@ -1,6 +1,9 @@
 %div{:class => 'div_content'}
   -#%dl{:class => 'form-group'}
     -#%dt{:class => ''}
+  = if @profile.avatar.attached?
+    %p= image_tag @profile.avatar.variant(resize: "500x500")
+
   %div{:class => 'profile_photo_group'}
     %img= @profile.photos.first
   %div{:class => 'name_group'}
