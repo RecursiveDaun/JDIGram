@@ -13,9 +13,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.create(allowed_params)
     if @user.errors.empty?
-      redirect_to welcome_index_path
-    else
-      p @user.errors
+      profile = UserProfile.new
+      profile.user = @user
+      profile.save
+      if profile.errors.empty?
+        redirect_to welcome_index_path
+      end
     end
   end
 

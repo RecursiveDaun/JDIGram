@@ -1,8 +1,11 @@
 class ProfileController < ApplicationController
 
   def show
-    @profile = UserProfile.find(params[:id])
-    # @photo = @profile.photos.last
+    if is_id_number?(params[:id])
+      @profile = User.find(params[:id])
+    else
+      @profile = User.where('ten_symbols_hash = ?', params[:id]).first.user_profile
+    end
   end
 
   def edit
