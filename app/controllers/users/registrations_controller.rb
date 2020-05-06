@@ -56,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def allowed_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :nickname)
   end
 
   # The path used after sign up.
