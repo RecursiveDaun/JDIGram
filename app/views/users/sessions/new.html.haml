@@ -13,7 +13,10 @@
           .col-lg-4
             = f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class: 'form-control'
           .col-lg-4
-    .actions.text-center.pt-5
+    .text-center.pt-5
       = f.submit 'Sign in', class: 'btn btn-secondary'
-
-    = render "devise/shared/links"
+    .row.pt-5
+      .col-lg-4
+      .col-lg-4
+        = render "devise/shared/links"
+      .col-lg-4
