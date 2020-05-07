@@ -46,9 +46,13 @@ class ProfileController < ApplicationController
   private
 
   def find_profile_by_params
+    p '===================== Save Condition ====================='
+    p params[:id], " ", is_id_number?(params[:id])
     if is_id_number?(params[:id])
+      p '===================== is_id_number? true ====================='
       @profile = User.find(params[:id]).user_profile
     else
+      p '===================== is_id_number? false ====================='
       @profile = User.where('link_hash = ?', params[:id]).first.user_profile
     end
   end
