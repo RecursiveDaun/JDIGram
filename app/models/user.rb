@@ -24,7 +24,13 @@ class User < ApplicationRecord
   end
 
   before_validation do
-    self.ten_symbols_hash = SecureRandom.hex(5)
+    generate_unique_hash
+  end
+
+  private
+
+  def generate_unique_hash
+    self.ten_symbols_hash = self.id.to_s + SecureRandom.alphanumeric(10 - user_id.length)
   end
 
 end
