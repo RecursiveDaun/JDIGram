@@ -26,7 +26,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def allowed_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :nickname)
   end
 
 end

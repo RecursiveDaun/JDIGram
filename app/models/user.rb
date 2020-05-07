@@ -11,7 +11,8 @@ class User < ApplicationRecord
   attr_writer :login
 
   def login
-    @login || self.try(:nickname) || self.email
+    # @login || self.try(:nickname) || self.email
+    @login || self.nickname || self.email
   end
 
   def self.find_for_database_authentication(warden_conditions)
