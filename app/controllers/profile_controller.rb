@@ -4,7 +4,7 @@ class ProfileController < ApplicationController
     if is_id_number?(params[:id])
       @profile = User.find(params[:id])
     else
-      @profile = User.where('ten_symbols_hash = ?', params[:id]).first.user_profile
+      @profile = User.where('link_hash = ?', params[:id]).first.user_profile
     end
   end
 

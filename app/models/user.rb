@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :ten_symbols_hash, length: { is: 10 }
+  validates :link_hash, length: { is: 10 }
 
   has_one :user_profile
 
@@ -24,13 +24,15 @@ class User < ApplicationRecord
   end
 
   before_validation do
-    generate_unique_hash
+    generate_unique_link_hash
   end
 
   private
 
-  def generate_unique_hash
-    self.ten_symbols_hash = self.id.to_s + SecureRandom.alphanumeric(10 - user_id.length)
+  def generate_unique_link_hash
+    begin
+      self.link_hash = SecureRandom.hex(5)
+    end while self.class.exists?(link_hash: self.link_hash)
   end
 
 end
