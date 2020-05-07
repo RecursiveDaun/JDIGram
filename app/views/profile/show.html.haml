@@ -1,9 +1,13 @@
-.div_content
-  - if @profile.avatar.attached?
-    = image_tag @profile.avatar, class: 'avatar-photo'
-  .name_group
-    %label Username
-    %label= @profile.name
-  .age_group
-    %label Age
-    %label= @profile.age
+%main
+  .user_avatar_container
+  .div_content
+    - if @profile.avatar.attached?
+      = image_tag @profile.avatar, class: 'avatar-photo'
+    .name_group
+      %label Username
+      %label= @profile.name
+    .age_group
+      %label Age
+      %label= @profile.age
+
+

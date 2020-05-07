@@ -1,21 +1,22 @@
 class ProfileController < ApplicationController
 
+  before_action :find_profile_by_params, only: [:show, :edit, :update]
+
   def show
-    if is_id_number?(params[:id])
-      @profile = User.find(params[:id])
-    else
-      @profile = User.where('ten_symbols_hash = ?', params[:id]).first.user_profile
-    end
+    # yield
   end
 
   def edit
-    @profile = UserProfile.find(params[:id])
+    # yield
   end
 
   def update
-    @profile = UserProfile.find(params[:id])
-    avatarData = params[:user_profile][:avatar]
-    @profile.avatar.attach(avatarData)
+    profile_data = params[:user_profile]
+    @profile.update_attributes(:name => profile_data[:name], :age => profile_data[:age])
+    if !profile_data[:avatar].nil?
+      @profile.avatar.attach(profile_data[:avatar])
+    end
+
     if @profile.save
       redirect_to action: 'show'
     end
@@ -38,5 +39,15 @@ class ProfileController < ApplicationController
   #   @photo.user_profile = @profile
   #   @photo.save!
   # end
+
+  private
+
+  def find_profile_by_params
+    if is_id_number?(params[:id])
+      @profile = User.find(params[:id]).user_profile
+    else
+      @profile = User.where('ten_symbols_hash = ?', params[:id]).first.user_profile
+    end
+  end
 
 end
