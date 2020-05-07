@@ -14,7 +14,7 @@
           .col-lg-12
             = f.label :avatar, 'Upload your profile pic'
             = f.file_field :avatar, id: :profile_avatar, class: 'custom-file-input', placeholder: 'Choose file', onchange: 'show_image_preview(this);'
-            = f.label 'Choose file', class: "custom-file-label", for: :profile_avatar
+            = f.label 'Choose file', id: 'profile_avatar_label', class: "custom-file-label", for: :profile_avatar
     .row.pt-3
       .col-lg-4
       .col-lg-4

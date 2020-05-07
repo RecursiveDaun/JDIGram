@@ -10,16 +10,11 @@ class ProfileController < ApplicationController
 
   def update
     profile_data = params[:user_profile]
-    p '===================== Update Attributes ====================='
     @profile.update_attributes(:name => profile_data[:name], :age => profile_data[:age])
-    p '===================== Avatar Condition ====================='
     if !profile_data[:avatar].nil?
-      p '===================== Avatar::true ====================='
       @profile.avatar.attach(profile_data[:avatar])
     end
-    p '===================== Save Condition ====================='
     if @profile.save
-      p '===================== Save::true ====================='
       redirect_to action: 'show'
     end
   end
@@ -46,13 +41,9 @@ class ProfileController < ApplicationController
 
   def find_profile_by_params
     if is_id_number?(params[:id])
-      p '===================== is_id_number? true ====================='
       @profile = User.find(params[:id]).user_profile
-      p @profile
     else
-      p '===================== is_id_number? false ====================='
       @profile = User.where('link_hash = ?', params[:id]).first.user_profile
-      p @profile
     end
   end
 
