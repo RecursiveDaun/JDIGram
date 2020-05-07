@@ -8,4 +8,4 @@ google:
   service: GCS
   project: JDIGram
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
-  bucket: JDIGram
+  bucket: jdigram
