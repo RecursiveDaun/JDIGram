@@ -30,11 +30,9 @@ class User < ApplicationRecord
   private
 
   def generate_unique_link_hash
-    random_hash = SecureRandom.hex(5)
-    while self.class.exists?(link_hash: random_hash) do
-      random_hash = SecureRandom.hex(5)
-    end
-    self.link_hash = random_hash
+    begin
+      self.link_hash = SecureRandom.hex(5)
+    end while self.class.exists?(link_hash: self.link_hash)
   end
 
 end
