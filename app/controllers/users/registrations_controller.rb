@@ -19,6 +19,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if profile.errors.empty?
         redirect_to welcome_index_path
       end
+    else
+      p '================================================================'
+      p @user.errors
+      p '================================================================'
     end
   end
 

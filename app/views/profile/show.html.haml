@@ -1,9 +1,23 @@
-.div_content
-  - if @profile.avatar.attached?
-    = image_tag @profile.avatar, class: 'avatar-photo'
-  .name_group
-    %label Username
-    %label= @profile.name
-  .age_group
-    %label Age
-    %label= @profile.age
+-#.container
+-#  .row.text-center
+-#    .col-lg-4
+-#      %h1 some text
+-#    .col-lg-8
+-#      %h3 Some text x2
+%main
+  .container
+    .row
+      .col-lg-3
+        - if @profile.avatar.attached?
+          = image_tag @profile.avatar, class: 'avatar_photo'
+      .col-lg-3.align-self-center
+        .row
+          .col-lg-10.text-left
+            %label{:class => 'username_label'}= @profile.name
+          .col-lg-2
+            = button_to edit_profile_path(@profile.user), method: :get, class: 'btn btn-primary' do
+              %i.fa.fa-edit
+            -#%br
+            -# = link_to 'Edit link', edit_profile_path(@profile.user), class: 'btn btn-primary'
+        .row
+          %label= @profile.age
