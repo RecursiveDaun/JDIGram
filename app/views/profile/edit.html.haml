@@ -1,12 +1,28 @@
-%h1{:align => 'center'} Edit your profile
 = form_for @profile, url: profile_path do |f|
-  %div{:class => 'name_group'}
-    = f.label :name
-    = f.text_field :name
-  %div{:class => 'age_group'}
-    = f.label :age
-    = f.text_field :age
-  %div{:class => 'upload_photo'}
-    = f.label :avatar, 'Upload your photo'
-    = f.file_field :avatar, id: :profile_avatar
-  = f.submit 'Save changes'
+  .container.text-center
+    %h2.pt-5 Edit your profile
+    .row
+      .col-lg-4
+      .col-lg-4
+        .row.pt-2
+          .col-lg-12
+            = f.text_field :name, placeholder: 'Your name', class: 'form-control'
+        .row.pt-2
+          .col-lg-12
+            = f.text_field :age, placeholder: 'Your age', class: 'form-control'
+        .row.pt-2
+          .col-lg-12
+            = f.label :avatar, 'Upload your profile pic'
+            = f.file_field :avatar, id: :profile_avatar, class: 'custom-file-input', placeholder: 'Choose file'
+            = f.label 'Choose file', class: "custom-file-label", for: :profile_avatar
+      .col-lg-4
+  -#%div{:class => 'name_group'}
+  -#  = f.label :name
+  -#  =
+  -#%div{:class => 'age_group'}
+  -#  = f.label :age
+  -#
+  -#%div{:class => 'upload_photo'}
+  -#  = f.label :avatar, 'Upload your photo'
+  -#  = f.file_field :avatar, id: :profile_avatar
+  -#= f.submit 'Save changes'
