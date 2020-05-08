@@ -11,13 +11,30 @@
 -#        %a.nav-link{:href => "#"}
 -#          Messages
 
-.container.mt-5.pt-5
-  .row
-    .col-lg-2
-    .col-lg-8
-      %table
-        -# = @posts.each do |post|
-        -#   %tr
-        -#     %h5= post.user_profile.name
 
-    .col-lg-2
+.container.mt-5.pt-5
+  - @posts.each do |post|
+    .row.posts_row.mt-5.pt-5
+      .col-lg-12
+        .row
+          .col-lg-12
+            .row.post_author
+              .col-lg-12
+                = link_to "#{post.user_profile.name}", profile_path(post.user_profile)
+            .row.post_photo
+              .col-lg-12
+                = image_tag post.photo, class: 'post_photo'
+            .row.post_description
+              .col-lg-12
+                %p= post.description
+-#
+-# .container.mt-5.pt-5
+-#   .row
+-#     .col-lg-2
+-#     .col-lg-8
+-#       %table
+-#         -# = @posts.each do |post|
+-#         -#   %tr
+-#         -#     %h5= post.user_profile.name
+-#
+-#     .col-lg-2

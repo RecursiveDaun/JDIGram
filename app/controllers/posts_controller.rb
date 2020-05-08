@@ -26,10 +26,7 @@ class PostsController < ApplicationController
 
     post_image_data = params[:post][:post_image]
     if !post_image_data.nil?
-      p '======================================================== INTO ============================'
       @post.photo.attach(post_image_data)
-    else
-      p '======================================================== OUT ============================'
     end
 
     if @post.save
@@ -44,7 +41,6 @@ class PostsController < ApplicationController
 
   # ====================================== Private Methods ====================================== #
   private
-
   # =================== Helpers ===================
   def find_user_profile_by_params
     if is_id_number?(params[:profile_id])
@@ -60,21 +56,6 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post)
-  end
-
-  # =================== Photo methods ===================
-  def photo_params
-    params.require(:post).require(:post_image)
-  end
-
-  def create_photo
-    photo = Photo.new
-    photo.data = photo_params.read
-    photo.filename = photo_params.original_filename
-    photo.image_type = photo_params.content_type
-    photo.post = @post
-    @post.photo = photo
-    photo.save!
   end
 
 end
