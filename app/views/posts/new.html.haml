@@ -1,0 +1,22 @@
+= form_for [@user_profile, @post], url: profile_posts_path, method: :post do |f|
+  .container
+    .row.text-center
+      .col-lg-2
+      .col-lg-8.pt-4
+        .row
+          .col-lg-12
+            .input-group-predend
+              %span{class: 'input-group-text'} Description
+              = f.text_area :description, class: 'form-control'
+              %img{:id => 'image_preview', :src => ""}
+        .row
+          .col-lg-12
+            .input-group
+              .input-group-predend
+                = f.label :post_image, 'Upload your profile pic'
+                = f.file_field :post_image, id: :post_image, class: 'custom-file-input', placeholder: 'Choose file', onchange: 'show_post_image_preview(this);'
+                = f.label 'Choose file', id: :post_image_label, for: :post_image, class: "custom-file-label"
+        .row.mt-5.text-center
+          .col-lg-12
+            = f.submit 'Upload', class: 'btn btn-outline-secondary'
+      .col-lg-2
