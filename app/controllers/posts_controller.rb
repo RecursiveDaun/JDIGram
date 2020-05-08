@@ -14,22 +14,19 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.user_profile_id = @user_profile.id
   end
 
   def create
-    p '====================================================================================='
-    p params
-    p '====================================================================================='
+    p '====================================== Private Methods ======================================'
+    p @user_profile
+    p '====================================== Private Methods ======================================'
     @post = Post.new
     @post.description = post_params[:description]
-    @post.user_profile_id = @user_profile
+    @post.user_profile = @user_profile
     create_photo
     if @post.save
-      p 'all is ok'
       redirect_to profile_path(@user_profile)
     else
-      p @post.errors
       render 'posts/new'
     end
   end
@@ -42,7 +39,7 @@ class PostsController < ApplicationController
 
   def find_user_profile_by_params
     if is_id_number?(params[:profile_id])
-      @user_profile = UserProfile.find(params[:id])
+      @user_profile = UserProfile.find(params[:profile_id])
     else
       @user_profile = User.where('link_hash = ?', params[:profile_id]).first.user_profile
     end
