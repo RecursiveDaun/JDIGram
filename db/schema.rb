@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_192402) do
+ActiveRecord::Schema.define(version: 2020_05_08_151838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,21 +36,11 @@ ActiveRecord::Schema.define(version: 2020_05_07_192402) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string "filename"
-    t.string "image_type"
-    t.binary "data"
-    t.integer "user_profile_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "user_profile_id"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "photo_id"
   end
 
   create_table "user_profiles", id: :serial, force: :cascade do |t|
