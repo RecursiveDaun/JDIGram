@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
 
-  before_action :find_profile_by_params, only: [:show, :edit, :update]
+  before_action :find_user_profile_by_params, only: [:show, :edit, :create, :update]
 
   def show
   end
@@ -39,9 +39,9 @@ class ProfileController < ApplicationController
 
   private
 
-  def find_profile_by_params
+  def find_user_profile_by_params
     if is_id_number?(params[:id])
-      @profile = User.find(params[:id]).user_profile
+      @profile = UserProfile.find(params[:id])
     else
       @profile = User.where('link_hash = ?', params[:id]).first.user_profile
     end

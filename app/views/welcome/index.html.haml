@@ -15,5 +15,9 @@
   .row
     .col-lg-2
     .col-lg-8
-      %h1= @user_profile.name
+      %table
+        -# = @posts.each do |post|
+        -#   %tr
+        -#     %h5= post.user_profile.name
+
     .col-lg-2

@@ -15,7 +15,7 @@
           .col-lg-10.text-left
             %label{:class => 'username_label'}= @profile.name
           .col-lg-2
-            = button_to edit_profile_path(@profile.user), method: :get, class: 'btn btn-primary' do
+            = button_to edit_profile_path(@profile), method: :get, class: 'btn btn-primary' do
               %i.fa.fa-edit
         .row
           .col-lg-12.text-left
