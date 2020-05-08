@@ -25,7 +25,9 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= link_to "Profile", profile_path(current_user.user_profile), class: 'nav-link' %>
+          <%- if !current_user.nil? %>
+            <%= link_to "Profile", profile_path(current_user.user_profile), class: 'nav-link' %>
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to "Sign up",  new_user_registration_path, class: 'nav-link' %>
