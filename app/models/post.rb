@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
   belongs_to  :user_profile
-  has_many    :photos
+  has_one_attached :photo
 end

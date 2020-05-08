@@ -25,3 +25,10 @@
         = button_to new_profile_post_path(@profile), method: :get, class: 'btn btn-primary' do
           %span Create new post
           %i.fa.fa-plus
+    .row.posts_row.mt-5.pt-5
+      .col-lg-12
+        - @posts.each do |post|
+          .row
+            .col-lg-4
+              - if post.photo.attached?
+                = image_tag post.photo, class: 'post_photo'

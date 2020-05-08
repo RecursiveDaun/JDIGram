@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   before_action :find_user_profile_by_params, only: [:new, :create]
 
   # ====================================== Actions ====================================== #
+
+  # =================== Display ===================
   def index
     @posts = Post.all
   end
@@ -12,18 +14,24 @@ class PostsController < ApplicationController
   def show
   end
 
+  # =================== Create/Update ===================
   def new
     @post = Post.new
   end
 
   def create
-    p '====================================== Private Methods ======================================'
-    p @user_profile
-    p '====================================== Private Methods ======================================'
     @post = Post.new
     @post.description = post_params[:description]
     @post.user_profile = @user_profile
-    create_photo
+
+    post_image_data = params[:post][:post_image]
+    if !post_image_data.nil?
+      p '======================================================== INTO ============================'
+      @post.photo.attach(post_image_data)
+    else
+      p '======================================================== OUT ============================'
+    end
+
     if @post.save
       redirect_to profile_path(@user_profile)
     else
@@ -37,6 +45,7 @@ class PostsController < ApplicationController
   # ====================================== Private Methods ====================================== #
   private
 
+  # =================== Helpers ===================
   def find_user_profile_by_params
     if is_id_number?(params[:profile_id])
       @user_profile = UserProfile.find(params[:profile_id])
@@ -45,40 +54,27 @@ class PostsController < ApplicationController
     end
   end
 
-
-  private
+  def find_post_by_params
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post)
   end
 
-  private
-
-  def allowed_params
-    params.require(:post).permit(:description)
-  end
-
-  private
-
-  def find_post_by_params
-    @post = Post.find(params[:id])
-  end
-
-  private
-
+  # =================== Photo methods ===================
   def photo_params
     params.require(:post).require(:post_image)
   end
 
-  private
-
   def create_photo
-    @photo = Photo.new
-    @photo.data = photo_params.read
-    @photo.filename = photo_params.original_filename
-    @photo.image_type = photo_params.content_type
-    @photo.post = @post
-    @photo.save!
+    photo = Photo.new
+    photo.data = photo_params.read
+    photo.filename = photo_params.original_filename
+    photo.image_type = photo_params.content_type
+    photo.post = @post
+    @post.photo = photo
+    photo.save!
   end
 
 end
