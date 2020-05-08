@@ -5,7 +5,7 @@
 -#    .col-lg-8
 -#      %h3 Some text x2
 %main
-  .container
+  .container.mt-5
     .row
       .col-lg-3
         - if @profile.avatar.attached?
@@ -17,7 +17,6 @@
           .col-lg-2
             = button_to edit_profile_path(@profile.user), method: :get, class: 'btn btn-primary' do
               %i.fa.fa-edit
-            -#%br
-            -# = link_to 'Edit link', edit_profile_path(@profile.user), class: 'btn btn-primary'
         .row
-          %label= @profile.age
+          .col-lg-12.text-left
+            %label= @profile.age
