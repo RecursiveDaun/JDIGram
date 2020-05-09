@@ -1,4 +1,4 @@
-.container.mt-5.pt-5
+.container
   .row
     .col-lg-3
     -# Profile Info section
@@ -8,24 +8,28 @@
         .col-lg-5.text-left
           - if @profile.avatar.attached?
             = image_tag @profile.avatar, class: 'avatar_photo'
+          - else
+            = image_tag 'user_avatar_placeholder.png', class: 'avatar_photo'
         -# Profile username
         .col-lg-5.text-left
-          %label{:class => 'username_label'}= @profile.name
+          %label{:class => 'username_label'}= @profile.name.blank? ? current_user.nickname : @profile.name
           .row
             -# Profile age
             .col-lg-12.text-left
               %label= @profile.age
         -# Edit profile button
         .col-lg-2
-          = button_to edit_profile_path(@profile), method: :get, class: 'btn btn-primary' do
-            %i.fa.fa-edit
+          - if current_user.user_profile.id == params[:id].to_i
+            = button_to edit_profile_path(@profile), method: :get, class: 'btn btn-primary' do
+              %i.fa.fa-edit
     .col-lg-3
   .row.mt-5.text-left
     .col-lg-3
     .col-lg-6.text-center
-      = button_to new_profile_post_path(@profile), method: :get, class: 'btn btn-primary' do
-        %span Create new post
-        %i.fa.fa-plus
+      - if current_user.user_profile.id == params[:id].to_i
+        = button_to new_profile_post_path(@profile), method: :get, class: 'btn btn-primary' do
+          %span Create new post
+          %i.fa.fa-plus
     .col-lg-6
   .row.posts_row.text-center.mt-5.pt-5
     .col-lg-12
