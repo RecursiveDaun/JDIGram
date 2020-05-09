@@ -11,6 +11,7 @@
                   = link_to "#{post.user_profile.name}", profile_path(post.user_profile), class: 'link_to_profile'
                   = button_to profile_path(post.user_profile), method: :get, class: 'button_avatar_link_to_profile' do
                     = image_tag post.user_profile.avatar, class: 'avatar_link_to_profile'
+                  -# = image_tag post.user_profile.avatar, class: 'avatar_link_to_profile'
               .row.pt-2.text-center
                 .col-lg-12
                   = image_tag post.photo, class: 'post_photo'
