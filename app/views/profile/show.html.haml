@@ -30,5 +30,5 @@
         - @posts.each do |post|
           .row
             .col-lg-4
-              - if post.photo.attached?
-                = image_tag post.photo, class: 'post_photo'
+            - if post.photo.attached?
+              = image_tag post.photo, class: 'profile_post_photo'

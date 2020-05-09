@@ -25,17 +25,50 @@ main {
 .avatar_photo {
   width: 150px;
   height: 150px;
+}
+
+.avatar_photo,
+.button_avatar_link_to_profile {
   border-radius: 50%;
   border: 1px solid #c9c6c5;
   alignment: left;
 }
 
-// User info section
-.account_info {
-  align-self: center;
-}
+// ============ index.html ============
 
 // Labels
 .username_label {
   font-size: 30px;
 }
+
+// Images
+.profile_post_photo {
+  border-radius: 15px;
+  width: 4000px;
+  height: 520px;
+}
+
+// Links
+.link_to_profile {
+  color: black;
+  font-weight: 800;
+}
+
+.button_avatar_link_to_profile,
+avatar_link_to_profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid green;
+}
+
+.blank_space {
+  background-color: #2E2F30;
+}
+
+.content_block {
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #afbab2;
+}
+
