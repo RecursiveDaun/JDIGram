@@ -13,9 +13,6 @@
 }
 
 .content_block {
-  //position: absolute;
-  //left: 15%;
-  //right: 15%;
   width: 80%;
   background-color: white;
   border-radius: 10px;
@@ -25,13 +22,6 @@
 // Labels
 .username_label {
   font-size: 30px;
-}
-
-// Images
-.profile_post_photo {
-  border-radius: 15px;
-  width: 4000px;
-  height: 520px;
 }
 
 // Links
@@ -44,8 +34,12 @@
 .avatar_link_to_profile {
   width: 50px;
   height: 50px;
+
+  border: none;
   border-radius: 50%;
-  margin-left: 0px;
-  padding-left: 0px;
-  background-size: cover;
+
+  margin: 0px 0px;
+  padding: 0px 0px;
+
+  object-fit: cover;
 }

@@ -1,34 +1,36 @@
--#.container
--#  .row.text-center
--#    .col-lg-4
--#      %h1 some text
--#    .col-lg-8
--#      %h3 Some text x2
-%main
-  .container.mt-5
-    .row
-      .col-lg-3
-        - if @profile.avatar.attached?
-          = image_tag @profile.avatar, class: 'avatar_photo'
-      .col-lg-3.align-self-center
-        .row
-          .col-lg-10.text-left
-            %label{:class => 'username_label'}= @profile.name
-          .col-lg-2
-            = button_to edit_profile_path(@profile), method: :get, class: 'btn btn-primary' do
-              %i.fa.fa-edit
-        .row
-          .col-lg-12.text-left
-            %label= @profile.age
-    .row.mt-5.text-left
-      .col-lg-12
-        = button_to new_profile_post_path(@profile), method: :get, class: 'btn btn-primary' do
-          %span Create new post
-          %i.fa.fa-plus
-    .row.posts_row.mt-5.pt-5
-      .col-lg-12
-        - @posts.each do |post|
+.container.mt-5
+  .row
+    .col-lg-3
+    -# Profile Info section
+    .col-lg-6
+      .row.px-0-0.py-0-0.mx-0-0.my-0-0
+        -# Profile Avatar
+        .col-lg-5.text-left
+          - if @profile.avatar.attached?
+            = image_tag @profile.avatar, class: 'avatar_photo'
+        -# Profile username
+        .col-lg-5.text-left
+          %label{:class => 'username_label'}= @profile.name
           .row
-            .col-lg-4
+            -# Profile age
+            .col-lg-12.text-left
+              %label= @profile.age
+        -# Edit profile button
+        .col-lg-2
+          = button_to edit_profile_path(@profile), method: :get, class: 'btn btn-primary' do
+            %i.fa.fa-edit
+    .col-lg-3
+  .row.mt-5.text-left
+    .col-lg-3
+    .col-lg-6.text-center
+      = button_to new_profile_post_path(@profile), method: :get, class: 'btn btn-primary' do
+        %span Create new post
+        %i.fa.fa-plus
+    .col-lg-6
+  .row.posts_row.text-center.mt-5.pt-5
+    .col-lg-12
+      - @posts.each do |post|
+        .row
+          .col-lg-12.mt-2
             - if post.photo.attached?
               = image_tag post.photo, class: 'profile_post_photo'

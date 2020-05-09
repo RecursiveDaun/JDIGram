@@ -1,21 +1,20 @@
-%body.welcome_body
-  .container.pt-5.blank_space
-    - @posts.each do |post|
-      .row.mt-4
-        .col-lg-2
-        .col-lg-8
-          .row
-            .col-lg-12.content_block
-              .row.pt-2
-                .col-lg-12
-                  = link_to "#{post.user_profile.name}", profile_path(post.user_profile), class: 'link_to_profile'
-                  = button_to profile_path(post.user_profile), method: :get, class: 'button_avatar_link_to_profile' do
-                    = image_tag post.user_profile.avatar, class: 'avatar_link_to_profile'
-                  -# = image_tag post.user_profile.avatar, class: 'avatar_link_to_profile'
-              .row.pt-2.text-center
-                .col-lg-12
-                  = image_tag post.photo, class: 'post_photo'
-              .row.pt-2
-                .col-lg-12
-                  %p= post.description
-        .col-lg-2
+.container.pt-5.blank_space
+  - @posts.each do |post|
+    .row.mt-4
+      .col-lg-2
+      .col-lg-8
+        .row
+          .col-lg-12.content_block
+            .row.pt-2
+              .col-lg-1
+                = button_to profile_path(post.user_profile), method: :get, class: 'button_avatar_link_to_profile' do
+                  = image_tag post.user_profile.avatar, class: 'avatar_link_to_profile'
+              .col-lg-11.text-left
+                = link_to "#{post.user_profile.name}", profile_path(post.user_profile), class: 'link_to_profile'
+            .row.pt-2.text-center
+              .col-lg-12
+                = image_tag post.photo, class: 'post_photo'
+            .row.pt-2
+              .col-lg-12
+                %p= post.description
+      .col-lg-2

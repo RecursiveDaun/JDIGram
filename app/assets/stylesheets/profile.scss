@@ -5,20 +5,34 @@
   display: flex;
 }
 
-// User avatar section
 .user_avatar_container {
   padding-left: 20px;
+}
+
+
+// Images
+.profile-post-photo-section {
+  border-radius: 15px;
+  background-color: black;
+}
+
+.profile_post_photo {
+  border-radius: 15px;
+
+  padding: 0px 0px;
+
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .avatar_photo {
   width: 150px;
   height: 150px;
-}
 
-.avatar_photo,
-.button_avatar_link_to_profile {
   border-radius: 50%;
   border: 1px solid #c9c6c5;
+
   alignment: left;
-  background-size: cover;
+  object-fit: cover;
 }
