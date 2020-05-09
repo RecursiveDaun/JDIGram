@@ -12,7 +12,7 @@
             = f.text_field :age, placeholder: 'Your age', class: 'form-control'
         .row.pt-2
           .col-lg-12
-            = f.file_field :avatar, id: :profile_avatar, class: 'custom-file-input', placeholder: 'Choose file', onchange: 'show_profile_avatar_preview(this);'
+            = f.file_field :avatar, id: :profile_avatar, accept: '.jpg, .png, .jpeg', class: 'custom-file-input', placeholder: 'Choose file', onchange: 'show_profile_avatar_preview(this);'
             = f.label 'Upload your profile pic', id: 'profile_avatar_label', class: "custom-file-label", for: :profile_avatar
     .row.pt-3
       .col-lg-4
