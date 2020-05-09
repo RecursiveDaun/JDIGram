@@ -36,18 +36,18 @@
     </div>
   </nav>
 
-<!--  <div class="notice-container">-->
-    <%# if notice %>
-<!--      <div class="alert alert-success">-->
-        <%#= notice %>
-<!--      </div>-->
-    <%# end %>
-    <%# if alert %>
-<!--      <div class="alert alert-danger">-->
-        <%#= alert %>
-<!--      </div>-->
-    <%# end %>
-<!--  </div>-->
+  <div class="notice-container">
+    <% if notice %>
+      <div class="alert alert-success">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger">
+        <%= alert %>
+      </div>
+    <% end %>
+  </div>
 
   <%= yield %>
 </body>
