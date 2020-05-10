@@ -20,6 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         redirect_to welcome_index_path
       end
     else
+      p @user.errors
       render :action => 'new'
     end
   end
@@ -61,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def allowed_params
-    params.require(:user).permit(:email, :password, :nickname)
+    params.require(:user).permit(:email, :password, :password_confirmation, :nickname)
   end
 
   # The path used after sign up.
