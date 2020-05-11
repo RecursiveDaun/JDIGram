@@ -17,7 +17,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       profile.user = @user
       profile.save
       if profile.errors.empty?
-        redirect_to welcome_index_path
+        sign_in(@user)
+        redirect_to after_sign_up_path_for(@user)
       end
     else
       flash[:password_confirmation_error] = 'Passwords doesn\'t matches'
