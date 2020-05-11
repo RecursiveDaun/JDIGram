@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         redirect_to welcome_index_path
       end
     else
-      p @user.errors
+      flash[:password_confirmation_error] = 'Passwords doesn\'t matches'
       render :action => 'new'
     end
   end
