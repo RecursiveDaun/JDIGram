@@ -42,6 +42,7 @@ class PostsController < ApplicationController
     else
       Like.destroy(@like.id)
     end
+    redirect_to welcome_index_path
   end
 
   # ====================================== Private Methods ====================================== #

@@ -22,9 +22,9 @@
                 = image_tag post.photo, class: 'post_photo'
             .row.pt-2
               .col-lg-12.text-left
-                = button_to on_like_clicked_profile_post_url(post.user_profile, post), action: 'on_like_clicked', controller: 'posts', class: 'btn btn-primary' do
+                = button_to on_like_clicked_profile_post_url(post.user_profile, post), action: 'on_like_clicked', controller: 'posts', class: 'btn btn-primary', id: 'like-button', remote: true, onclick: 'tempName4Func' do
                   %i.fa.fa-heart
-                  %label= post.likes.count
+                  %label{:id => 'likes-count-label'}= post.likes.count
             .row.pt-2
               .col-lg-12
                 %p= post.description

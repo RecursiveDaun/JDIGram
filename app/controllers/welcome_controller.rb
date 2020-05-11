@@ -5,8 +5,4 @@ class WelcomeController < ApplicationController
     p @posts
   end
 
-  def post_was_liked
-    p 'post_was_liked'
-  end
-
 end
