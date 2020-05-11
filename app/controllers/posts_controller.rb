@@ -1,18 +1,10 @@
 class PostsController < ApplicationController
 
   # ====================================== Filters and other ====================================== #
-  before_action :find_post_by_params, only: [:show, :update]
+  before_action :find_post_by_params, only: [:update, :on_like_clicked]
   before_action :find_user_profile_by_params, only: [:new, :create]
 
   # ====================================== Actions ====================================== #
-
-  # =================== Display ===================
-  def index
-    @posts = Post.all
-  end
-
-  def show
-  end
 
   # =================== Create/Update ===================
   def new
@@ -37,6 +29,19 @@ class PostsController < ApplicationController
   end
 
   def update
+  end
+
+  # =================== Custom Actions ===================
+  def on_like_clicked
+    @like = Like.where(user_profile_id: @post.user_profile, post_id: @post).first
+    if @like.blank?
+      @like = Like.new
+      @like.post = @post
+      @like.user_profile = @post.user_profile
+      @like.save
+    else
+      Like.destroy(@like.id)
+    end
   end
 
   # ====================================== Private Methods ====================================== #

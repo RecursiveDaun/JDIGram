@@ -21,6 +21,11 @@
               .col-lg-12
                 = image_tag post.photo, class: 'post_photo'
             .row.pt-2
+              .col-lg-12.text-left
+                = button_to on_like_clicked_profile_post_url(post.user_profile, post), action: 'on_like_clicked', controller: 'posts', class: 'btn btn-primary' do
+                  %i.fa.fa-heart
+                  %label= post.likes.count
+            .row.pt-2
               .col-lg-12
                 %p= post.description
       .col-lg-2

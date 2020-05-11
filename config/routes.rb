@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   resources :welcome, only: [:index]
 
   resources :profile, only: [:show, :edit, :update] do
-    resources :posts, only: [:index, :show, :new, :create, :update, :destroy]
+    resources :posts, only: [:new, :create, :update, :destroy] do
+      member do
+        post :on_like_clicked
+      end
+    end
   end
-
-  # end
 
   # Devise
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' } do
