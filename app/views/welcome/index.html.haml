@@ -5,6 +5,8 @@
       .col-lg-8
         .row
           .col-lg-12.content_block
+
+            -# User profile links (avatar and name)
             .row.pt-2
               .col-lg-1
                 = button_to profile_path(post.user_profile), method: :get, class: 'button_avatar_link_to_profile' do
@@ -17,12 +19,16 @@
                   = link_to "#{post.user_profile.name}", profile_path(post.user_profile), class: 'link_to_profile'
                 - else
                   = link_to "#{current_user.nickname}", profile_path(post.user_profile), class: 'link_to_profile'
+
+            -# Post photo
             .row.pt-2.text-center
               .col-lg-12
                 = image_tag post.photo, class: 'post_photo'
+
+            -# Add Like
             .row.pt-2
               .col-lg-12.text-left
-                = button_to on_like_clicked_profile_post_url(post.user_profile, post), action: 'on_like_clicked', controller: 'posts', class: 'btn btn-primary', id: 'like-button', remote: true, onclick: 'tempName4Func' do
+                = button_to on_like_clicked_post_path(post), action: 'on_like_clicked', controller: 'posts', class: 'btn btn-primary', id: 'like-button', remote: true, onclick: 'tempName4Func' do
                   %i.fa.fa-heart
                   %label{:id => 'likes-count-label'}= post.likes.count
             -# Description of the post
@@ -32,7 +38,7 @@
             -# Add comment
             .row.pt-1
               .col-lg-12
-                =form_for [post.user_profile, post], url: add_comment_profile_post_path(post.user_profile, post), method: :post do |f|
+                =form_for [post], url: add_comment_post_path(post), method: :post do |f|
                   .input-group
                     = f.text_area :comments, class: 'form-control'
                     = f.submit 'Add', class: 'btn btn-secondary'

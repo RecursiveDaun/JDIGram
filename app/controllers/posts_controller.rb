@@ -33,11 +33,11 @@ class PostsController < ApplicationController
 
   # =================== Custom Actions ===================
   def on_like_clicked
-    @like = Like.where(user_profile_id: @post.user_profile, post_id: @post).first
+    @like = Like.where(user_profile_id: current_user.user_profile.id, post_id: @post.id).first
     if @like.blank?
       @like = Like.new
       @like.post = @post
-      @like.user_profile = @post.user_profile
+      @like.user_profile = current_user.user_profile
       @like.save
     else
       Like.destroy(@like.id)
@@ -55,11 +55,12 @@ class PostsController < ApplicationController
   private
   # =================== Helpers ===================
   def find_user_profile_by_params
-    if is_id_number?(params[:profile_id])
-      @user_profile = UserProfile.find(params[:profile_id])
-    else
-      @user_profile = User.where('link_hash = ?', params[:profile_id]).first.user_profile
-    end
+    @user_profile = current_user.user_profile
+    # if is_id_number?(params[:profile_id])
+    #   @user_profile = UserProfile.find(params[:profile_id])
+    # else
+    #   @user_profile = User.where('link_hash = ?', params[:profile_id]).first.user_profile
+    # end
   end
 
   def find_post_by_params
