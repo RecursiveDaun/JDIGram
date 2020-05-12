@@ -57,10 +57,6 @@ class PostsController < ApplicationController
                                user_profile_id: current_user.user_profile.id)
     @comment.save
 
-    # respond_to do |format|
-      # format.js { render 'posts/show.js.erb' }
-      # format.html { redirect_to welcome_index_path }
-    # end
     render json: { username: "#{current_user.user_profile.name}",
                    user_profile_id: current_user.user_profile.id,
                    comment_text: comment_text }

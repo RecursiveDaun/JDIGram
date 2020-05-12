@@ -21,14 +21,6 @@ $(document).ready(function() {
                 comment_text: $(`#comment-text-area-${post_id}`).val()
             },
             success: function (data) {
-                console.log(data);
-                // .row.comment-row
-                //     .col-lg-12
-                //         - if post.user_profile.name.present?
-                //             = link_to "#{post.user_profile.name}", profile_path(post.user_profile)
-                //         %br
-                //         %label= comment.text
-                // $(`#comments-to-post-${post_id}`).append(`<%= j render partial: 'partials/new_comment' %>`);
                 $(`#comments-to-post-${post_id}`).append(`
                     <div class="row comment-row">
                         <div class="col-lg-12">

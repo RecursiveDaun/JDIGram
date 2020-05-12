@@ -9,9 +9,7 @@ Rails.application.routes.draw do
       post :add_comment
     end
   end
-
-
-
+  
   # Devise
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' } do
     get '/users/sign_out' => 'devise/sessions#destroy'
