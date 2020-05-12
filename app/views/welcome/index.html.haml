@@ -28,25 +28,31 @@
             -# Add Like
             .row.pt-2
               .col-lg-12.text-left
-                = button_to on_like_clicked_post_path(post), action: 'on_like_clicked', controller: 'posts', class: 'btn btn-primary', id: 'like-button', remote: true, onclick: 'tempName4Func' do
+                = link_to '#', class: "like-link", post_id: post.id do
                   %i.fa.fa-heart
-                  %label{:id => 'likes-count-label'}= post.likes.count
+                  %label{:id => "likes-count-label-#{post.id}"}= post.likes.count
+
             -# Description of the post
             .row.pt-2
               .col-lg-12
                 %p= post.description
+
             -# Add comment
             .row.pt-1
               .col-lg-12
-                =form_for [post], url: add_comment_post_path(post), method: :post do |f|
-                  .input-group
-                    = f.text_area :comments, class: 'form-control'
-                    = f.submit 'Add', class: 'btn btn-secondary'
+                .input-group
+                  = text_area_tag :comment_text, nil, class: 'form-control', id: "comment-text-area-#{post.id}"
+                  = link_to '#', class: "add-comment-link", post_id: post.id do
+                    %button{:class => 'btn btn-secondary'}= 'Add'
+
             -# List of all comments
-            .row.pt-2
-              .col-lg-12
+            .row.pt-2.mb-3
+              .col-lg-12{:id => "comments-to-post-#{post.id}"}
                 - post.comments.each do |comment|
-                  .row
+                  .row.comment-row
                     .col-lg-12
+                      - if post.user_profile.name.present?
+                        = link_to "#{post.user_profile.name}", profile_path(post.user_profile)
+                      %br
                       %label= comment.text
       .col-lg-2

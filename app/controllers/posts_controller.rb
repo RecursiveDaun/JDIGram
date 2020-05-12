@@ -42,13 +42,28 @@ class PostsController < ApplicationController
     else
       Like.destroy(@like.id)
     end
-    redirect_to welcome_index_path
+
+    render json: { likes_count: "#{@post.likes.count}" }
   end
 
   def add_comment
+    comment_text = params[:comment_text]
+    if params[:comment_text].blank?
+      return
+    end
     @comment = Comment.new
-    @comment.update_attributes(text: params[:post][:comments], post_id: params[:id], user_profile_id: params[:profile_id])
+    @comment.update_attributes(text: comment_text,
+                               post_id: params[:id],
+                               user_profile_id: current_user.user_profile.id)
     @comment.save
+
+    # respond_to do |format|
+      # format.js { render 'posts/show.js.erb' }
+      # format.html { redirect_to welcome_index_path }
+    # end
+    render json: { username: "#{current_user.user_profile.name}",
+                   user_profile_id: current_user.user_profile.id,
+                   comment_text: comment_text }
   end
 
   # ====================================== Private Methods ====================================== #

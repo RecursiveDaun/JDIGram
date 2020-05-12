@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :profile, only: [:show, :edit, :update]
   resources :posts, only: [:new, :create, :update, :destroy] do
     member do
-      post :on_like_clicked
+      get :on_like_clicked
       post :add_comment
     end
   end
