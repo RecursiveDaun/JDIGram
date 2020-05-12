@@ -46,6 +46,9 @@ class PostsController < ApplicationController
   end
 
   def add_comment
+    @comment = Comment.new
+    @comment.update_attributes(text: params[:post][:comments], post_id: params[:id], user_profile_id: params[:profile_id])
+    @comment.save
   end
 
   # ====================================== Private Methods ====================================== #
