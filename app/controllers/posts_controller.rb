@@ -45,6 +45,9 @@ class PostsController < ApplicationController
     redirect_to welcome_index_path
   end
 
+  def add_comment
+  end
+
   # ====================================== Private Methods ====================================== #
   private
   # =================== Helpers ===================

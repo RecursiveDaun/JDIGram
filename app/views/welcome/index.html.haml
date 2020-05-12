@@ -25,6 +25,12 @@
                 = button_to on_like_clicked_profile_post_url(post.user_profile, post), action: 'on_like_clicked', controller: 'posts', class: 'btn btn-primary', id: 'like-button', remote: true, onclick: 'tempName4Func' do
                   %i.fa.fa-heart
                   %label{:id => 'likes-count-label'}= post.likes.count
+            .row.pt-1
+              .col-lg-12
+                =form_for [post.user_profile, post], url: add_comment_profile_post_path(post.user_profile, post), method: :post do |f|
+                  .input-group
+                    = f.text_area :comments, class: 'form-control'
+                    = f.submit 'Add', class: 'btn btn-secondary'
             .row.pt-2
               .col-lg-12
                 %p= post.description
