@@ -1,4 +1,6 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
+
+    // Like clicked
     $('.like-link').on('click', function(e) {
         e.preventDefault();
         let post_id = $(this).attr('post_id')
@@ -11,6 +13,7 @@ $(document).ready(function() {
         })
     });
 
+    // Add comment clicked
     $('.add-comment-link').on('click', function (e) {
         e.preventDefault();
         let post_id = $(this).attr('post_id');
