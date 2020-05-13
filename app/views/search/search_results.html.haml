@@ -1,0 +1,4 @@
+- if @users.present?
+  - @users.each do |user|
+    %ul
+      =link_to user.nickname, profile_path(User.find(user.id).user_profile)
