@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root :to => 'welcome#index'
   get 'search', to: 'search#search'
+
   resources :welcome, only: [:index]
   resources :profile, only: [:show, :edit, :update]
   resources :posts, only: [:new, :create, :update, :destroy] do
