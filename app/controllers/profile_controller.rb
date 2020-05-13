@@ -12,9 +12,17 @@ class ProfileController < ApplicationController
   def update
     profile_data = params[:user_profile]
     @profile.update_attributes(:name => profile_data[:name], :age => profile_data[:age])
-    if !profile_data[:avatar].nil?
+
+    if profile_data[:avatar].nil? == false
       @profile.avatar.attach(profile_data[:avatar])
+      if @profile.avatar.image? == false
+        @profile.avatar.purge
+        flash[:alert] = "Please, select image"
+        redirect_to action: 'edit'
+        return
+      end
     end
+
     if @profile.save
       redirect_to action: 'show'
     end
