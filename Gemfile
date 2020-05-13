@@ -11,7 +11,10 @@ gem 'dotenv-rails'
 # Using ActiveStorage
 gem 'activesupport'
 gem "google-cloud-storage", "~> 1.11", require: false
-# gem 'google-cloud-storage', require: false
+# Using elasticsearch
+# gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
+
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

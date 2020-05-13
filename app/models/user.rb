@@ -1,15 +1,14 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  #================== Associations ==================
+  has_one :user_profile
+
+  #================== Devise ==================
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :link_hash, length: { is: 10 }
-
-  has_one :user_profile
-
+  # For sign in with nickname
   attr_writer :login
-
   def login
     # @login || self.try(:nickname) || self.email
     @login || self.nickname || self.email
@@ -24,10 +23,43 @@ class User < ApplicationRecord
     end
   end
 
+  #================== Validates And Collbacks ==================
+  validates :link_hash, length: { is: 10 }
+
   before_validation do
     generate_unique_link_hash
   end
 
+  #================== Elasticsearch ==================
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  index_name Rails.application.class.parent_name.underscore
+  document_type self.name.downcase
+
+  settings index: { number_of_shards: 1 } do
+    mapping dynamic: false do
+      indexes :nickname, analyzer: 'english', type: :text
+    end
+  end
+
+  def as_indexed_json(options = nil)
+    self.as_json( only: [ :nickname ] )
+  end
+
+  # def self.search(query)
+  #   __elasticsearch__.search(
+  #       {
+  #           query: {
+  #               multi_match: {
+  #                   query: query,
+  #                   fields: ['title^5', 'body']
+  #               }
+  #           },
+  #       }
+  # end
+
+  #================== Private Methods ==================
   private
 
   def generate_unique_link_hash
