@@ -1,7 +1,7 @@
 class ProfileController < ApplicationController
 
   # ======================== Filters ========================
-  before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow]
+  before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow, :friends]
 
   # ======================== Display ========================
   def show
@@ -34,12 +34,22 @@ class ProfileController < ApplicationController
   # ======================== Custom Actions ========================
   # Follow to params[:id] user
   def follow
+    # TODO: Follow/Unfollow
     friendship = Friendship.new
-    friendship.owner_id = @profile.id
-    friendship.follower_id = current_user.user_profile.id
+    friendship.update_attributes(owner_id: @profile.id, follower_id: current_user.user_profile.id)
     friendship.save
   end
 
+  # List of all friends
+  def friends
+    friendships = Friendship.where(follower_id: @profile.id)
+    @friends = [ActiveRecord]
+    friendships.each do |f|
+      p f.owner_id
+      @friends.push(UserProfile.find(f.owner_id))
+    end
+    @friends.delete_at(0)
+  end
 
   # ======================== Private Methods ========================
   private

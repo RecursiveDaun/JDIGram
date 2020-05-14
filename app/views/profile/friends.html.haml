@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-lg-12
+      - @friends.each do |friend|
+        .row
+          -# Avatar section
+          .col-lg-4
+            - if friend.avatar.attached?
+              = image_tag friend.avatar, class: 'avatar_photo'
+            - else
+              = image_tag 'user_avatar_placeholder.png', class: 'avatar_photo'
+            = link_to "#{friend.name}", profile_path(friend), class: 'link_to_profile'
+          .col-lg-8
