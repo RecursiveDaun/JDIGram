@@ -286,6 +286,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   autoprefixer-rails
+  bindex
   bootstrap
   byebug
   coffee-rails (~> 4.2)
