@@ -85,6 +85,11 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.active_storage.service = :google
+  if ENV["SEARCHBOX_URL"].present?
+    p '============================================='
+    p ENV["SEARCHBOX_URL"]
+    p '============================================='
+    Elasticsearch::Model.user = Elasticsearch::User.new host: ENV["SEARCHBOX_URL"]
+  end
 
-  # Elasticsearch::Model.user = Elasticsearch::User.new host: ENV['SEARCHBOX_URL']
 end
