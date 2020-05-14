@@ -40,8 +40,6 @@ gem 'font-awesome-sass'
 gem 'devise'
 
 # Using elasticsearch
-# gem 'elasticsearch-rails' #, '~> 6'
-# gem 'elasticsearch-model' #, '~> 6'
 gem 'elasticsearch-model', '~> 7'
 gem 'elasticsearch-rails', '~> 7'
 
