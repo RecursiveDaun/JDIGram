@@ -38,8 +38,8 @@ gem 'font-awesome-sass'
 gem 'devise'
 
 # Using elasticsearch
-gem 'elasticsearch-rails', '~> 6'
-gem 'elasticsearch-model', '~> 6'
+gem 'elasticsearch-rails' #, '~> 6'
+gem 'elasticsearch-model' #, '~> 6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

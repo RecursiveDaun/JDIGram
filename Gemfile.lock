@@ -291,8 +291,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
-  elasticsearch-model (~> 6)
-  elasticsearch-rails (~> 6)
+  elasticsearch-model
+  elasticsearch-rails
   font-awesome-sass
   google-cloud-storage (~> 1.11)
   haml-rails
