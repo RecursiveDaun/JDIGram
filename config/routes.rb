@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :welcome, only: [:index]
   resources :profile, only: [:show, :edit, :update] do
     post 'follow', to: 'profile#follow'
+    post 'unfollow', to: 'profile#unfollow'
     get 'friends', to: 'profile#friends'
   end
   resources :posts, only: [:new, :create, :update, :destroy] do
