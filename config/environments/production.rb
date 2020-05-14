@@ -86,5 +86,8 @@ Rails.application.configure do
 
   config.active_storage.service = :google
 
-  Elasticsearch::Model.user = Elasticsearch::User.new host: ENV['SEARCHBOX_URL']
+  if ENV['SEARCHBOX_URL'].present?
+    Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
+  end
+
 end
