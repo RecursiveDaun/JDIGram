@@ -42,8 +42,8 @@ gem 'devise'
 # Using elasticsearch
 # gem 'elasticsearch-rails' #, '~> 6'
 # gem 'elasticsearch-model' #, '~> 6'
-gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', tag: 'v7.0.0'
-gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', tag: 'v7.0.0'
+gem 'elasticsearch-model', '~> 7'
+gem 'elasticsearch-rails', '~> 7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

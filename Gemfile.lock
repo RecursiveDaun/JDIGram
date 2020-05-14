@@ -77,17 +77,17 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    elasticsearch (7.6.0)
-      elasticsearch-api (= 7.6.0)
-      elasticsearch-transport (= 7.6.0)
-    elasticsearch-api (7.6.0)
+    elasticsearch (7.7.0)
+      elasticsearch-api (= 7.7.0)
+      elasticsearch-transport (= 7.7.0)
+    elasticsearch-api (7.7.0)
       multi_json
-    elasticsearch-model (6.1.0)
+    elasticsearch-model (7.1.0)
       activesupport (> 3)
       elasticsearch (> 1)
       hashie
-    elasticsearch-rails (6.1.0)
-    elasticsearch-transport (7.6.0)
+    elasticsearch-rails (7.1.0)
+    elasticsearch-transport (7.7.0)
       faraday (~> 1)
       multi_json
     erubi (1.9.0)
@@ -292,8 +292,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
-  elasticsearch-model
-  elasticsearch-rails
+  elasticsearch-model (~> 7)
+  elasticsearch-rails (~> 7)
   font-awesome-sass
   google-cloud-storage (~> 1.11)
   haml-rails
