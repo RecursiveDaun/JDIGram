@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'search', to: 'search#search'
 
   resources :welcome, only: [:index]
-  resources :profile, only: [:show, :edit, :update]
+  resources :profile, only: [:show, :edit, :update] do
+    post 'follow', to: 'profile#follow'
+  end
   resources :posts, only: [:new, :create, :update, :destroy] do
     member do
       get :on_like_clicked

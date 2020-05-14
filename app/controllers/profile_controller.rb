@@ -1,11 +1,14 @@
 class ProfileController < ApplicationController
 
-  before_action :find_user_profile_by_params, only: [:show, :edit, :update]
+  # ======================== Filters ========================
+  before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow]
 
+  # ======================== Display ========================
   def show
     @posts = Post.all.where(user_profile_id: @profile)
   end
 
+  # ======================== Edit ========================
   def edit
   end
 
@@ -28,17 +31,25 @@ class ProfileController < ApplicationController
     end
   end
 
-  def allowed_params
-    params.require(:user_profile).permit(:age, :name, :avatar)
+  # ======================== Custom Actions ========================
+  # Follow to params[:id] user
+  def follow
+    friendship = Friendship.new
+    friendship.owner_id = @profile.id
+    friendship.follower_id = current_user.user_profile.id
+    friendship.save
   end
 
+
+  # ======================== Private Methods ========================
   private
 
   def find_user_profile_by_params
-    if is_id_number?(params[:id])
-      @profile = UserProfile.find(params[:id])
+    profile_id = params[:id] || params[:profile_id]
+    if is_id_number?(profile_id)
+      @profile = UserProfile.find(profile_id)
     else
-      @profile = User.where('link_hash = ?', params[:id]).first.user_profile
+      @profile = User.where('link_hash = ?', profile_id).first.user_profile
     end
   end
 
