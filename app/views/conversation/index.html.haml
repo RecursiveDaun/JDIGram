@@ -1,7 +1,7 @@
-%h1= 'Hello'
+%h1= 'List of all conversations'
 .container
   - @conversations.each do |conv|
-    .row.conversation-index-row{:onClick => open_conversation(conv.id)}
+    .row.conversation-index-row{:onClick => "open_conversation(conv.id)"}
       .col-lg-12
         .row
           .col-lg-12

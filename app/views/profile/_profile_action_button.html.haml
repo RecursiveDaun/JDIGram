@@ -8,3 +8,7 @@
   - else
     = button_to profile_follow_unfollow_path(@profile), method: :post, class: 'btn btn-secondary', id: 'follow-unfollow-button', profile_id: @profile.id do
       %i.fa.fa-user-minus
+    -# = button_to conversation_index_path(@profile.id), method: :post, class: 'btn btn-primary', id: 'open-conversation-button' do
+    -#   %i.fa.fa-envelope
+    = link_to conversation_index_path(@profile.id), method: :post do
+      %i.fa.fa-envelope
