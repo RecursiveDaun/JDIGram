@@ -1,11 +1,15 @@
-%h1= 'List of all conversations'
-.container
+.container.conversation-container
   - @conversations.each do |conv|
-    .row.conversation-index-row{:onClick => "open_conversation(conv.id)"}
-      .col-lg-12
-        .row
-          .col-lg-12
-            %label= "With #{conv.author_id == current_user.user_profile.id ? UserProfile.find(conv.author_id).name : current_user.user_profile.name}"
-        .row
-          .col-lg-12
-            %label= conv.messages.last
+    - chat_companion = conv.author == current_user.user_profile ? conv.receiver : conv.author
+    = link_to conversation_path(conv.id), class: 'conversation-preview-link' do
+      .row.mt-3.conversation-short-info-row
+        .col-lg-1.text-left
+          = button_to conversation_path(conv), method: :get, class: 'button_avatar_link_to_profile align-middle mt-2' do
+            = image_tag chat_companion.avatar.attached? ? chat_companion.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
+        .col-lg-11.text-left
+          -# Chat companion name
+          .row
+            %label= "#{chat_companion.name || chat_companion.user.nickname}"
+          -# The latest message
+          .row.conversation-latest-message-row
+            %label= conv.messages.last.body

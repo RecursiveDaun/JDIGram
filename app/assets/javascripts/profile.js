@@ -8,7 +8,6 @@ $(document).on('turbolinks:load', function() {
             url: `/profile/${profile_id}/follow_unfollow`,
             type: 'POST',
             success: function (data) {
-                console.log(data);
                 $('#follow-unfollow-button').empty();
                 // If the user follow to the other user
                 if (data.is_follow) {

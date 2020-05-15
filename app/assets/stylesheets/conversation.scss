@@ -1,3 +1,19 @@
 // Place all the styles related to the conversation controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.conversation-container {
+  background-color: white;
+  min-height: 100vh;
+  height: 100vh;
+}
+
+.conversation-latest-message-row {
+  border-bottom: 1px solid gray;
+}
+
+a.conversation-preview-link,
+a.conversation-preview-link:hover{
+  color: black;
+  text-decoration: none;
+}

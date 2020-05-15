@@ -9,6 +9,10 @@ class ConversationController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.js
+      format.html { render 'conversation/show' }
+    end
   end
 
   def create

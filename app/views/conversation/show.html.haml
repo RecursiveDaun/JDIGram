@@ -1,8 +1,19 @@
 %h1= 'Conversation'
 .container
-  - @conversation.messages.each do |message|
-    .row
-      .col-lg-2
-        %label= UserProfile.find(message.author_id).name
-      .col-lg-10
-        %label= message.body
+  .row
+    .col-lg-12.messages-div
+      - @conversation.messages.each do |message|
+        .row
+          .col-lg-2
+            %label= UserProfile.find(message.author_id).name
+          .col-lg-10
+            %label= message.body
+  -# Send new message
+  .row
+    .col-lg-2
+    .col-lg-8
+      .input-group
+        = text_area_tag :body, nil, class: 'form-input', id: 'new-message-text-area'
+        = link_to '#', id: 'send-message', conversation_id: @conversation.id do
+          %button{:class => 'btn btn-secondary'}= 'Send'
+    .col-lg-2

@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :conversation, only: [:create, :index, :show]
+  resources :conversation, only: [:create, :index, :show] do
+    resources :message, only: [:create]
+  end
   
   # Devise
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' } do
