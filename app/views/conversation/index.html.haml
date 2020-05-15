@@ -1,0 +1,11 @@
+%h1= 'Hello'
+.container
+  - @conversations.each do |conv|
+    .row.conversation-index-row{:onClick => open_conversation(conv.id)}
+      .col-lg-12
+        .row
+          .col-lg-12
+            %label= "With #{conv.author_id == current_user.user_profile.id ? UserProfile.find(conv.author_id).name : current_user.user_profile.name}"
+        .row
+          .col-lg-12
+            %label= conv.messages.last

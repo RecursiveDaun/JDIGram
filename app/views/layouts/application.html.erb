@@ -51,6 +51,9 @@
               <%= link_to "Friends", profile_friends_path(current_user.user_profile), class: 'nav-link' %>
             </li>
             <li class="nav-item">
+              <%= link_to "Conversations",  conversation_index_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
               <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
           <% end %>

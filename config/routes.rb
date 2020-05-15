@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       post :add_comment
     end
   end
+
+  resources :conversation, only: [:create, :index, :show]
   
   # Devise
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' } do
