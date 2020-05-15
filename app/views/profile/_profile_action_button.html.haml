@@ -1,0 +1,10 @@
+- if current_user.user_profile.id == params[:id].to_i
+  = button_to edit_profile_path(@profile), method: :get, class: 'btn btn-primary' do
+    %i.fa.fa-edit
+- else
+  - if Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.user_profile.id).first.blank?
+    = button_to profile_follow_unfollow_path(@profile), method: :post, class: 'btn btn-primary', id: 'follow-unfollow-button', profile_id: @profile.id do
+      %i.fa.fa-user-plus
+  - else
+    = button_to profile_follow_unfollow_path(@profile), method: :post, class: 'btn btn-secondary', id: 'follow-unfollow-button', profile_id: @profile.id do
+      %i.fa.fa-user-minus

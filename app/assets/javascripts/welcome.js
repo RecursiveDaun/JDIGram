@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function() {
                 comment_text: $(`#comment-text-area-${post_id}`).val()
             },
             success: function (data) {
+                $(`#comment-text-area-${post_id}`).val("");
                 $(`#comments-to-post-${post_id}`).append(`
                     <div class="row comment-row">
                         <div class="col-lg-12">
@@ -32,7 +33,7 @@ $(document).on('turbolinks:load', function() {
                             <label>${data.comment_text}</label>
                         </div>
                     </div>
-                `)
+                `);
             }
         })
     })

@@ -1,7 +1,7 @@
 class ProfileController < ApplicationController
 
   # ======================== Filters ========================
-  before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow, :friends, :unfollow]
+  before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow_unfollow, :friends]
 
   # ======================== Display ========================
   def show
@@ -32,17 +32,18 @@ class ProfileController < ApplicationController
   end
 
   # ======================== Custom Actions ========================
-  # Follow to params[:id] user
-  def follow
-    # TODO: Follow/Unfollow
-    friendship = Friendship.new
-    friendship.update_attributes(owner_id: @profile.id, follower_id: current_user.user_profile.id)
-    friendship.save
-  end
-
-  # Follow from params[:id] user
-  def unfollow
-    Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.user_profile.id).first.destroy
+  # Follow/Unfollow to/from params[:profile_id] user
+  def follow_unfollow
+    friendship = Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.user_profile.id).first
+    if friendship.present?
+      friendship.destroy
+      render json: { is_follow: false }
+    else
+      friendship = Friendship.new
+      friendship.update_attributes(owner_id: @profile.id, follower_id: current_user.user_profile.id)
+      friendship.save
+      render json: { is_follow: true }
+    end
   end
 
   # List of all friends

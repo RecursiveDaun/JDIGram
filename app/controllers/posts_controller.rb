@@ -67,11 +67,6 @@ class PostsController < ApplicationController
   # =================== Helpers ===================
   def find_user_profile_by_params
     @user_profile = current_user.user_profile
-    # if is_id_number?(params[:profile_id])
-    #   @user_profile = UserProfile.find(params[:profile_id])
-    # else
-    #   @user_profile = User.where('link_hash = ?', params[:profile_id]).first.user_profile
-    # end
   end
 
   def find_post_by_params
