@@ -1,8 +1,11 @@
-.container
+.container.mt-5
+  .row
+    .col-lg-12.text-center
+      %h3= 'Following'
   .row
     .col-lg-12
       - @friends.each do |friend|
-        .row
+        .row.mt-3
           -# Avatar section
           .col-lg-4
             // Avatar-link
