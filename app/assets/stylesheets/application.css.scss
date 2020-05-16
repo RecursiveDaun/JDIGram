@@ -40,10 +40,26 @@
   letter-spacing: 0.1rem;
 }
 
-//.notice-container {
-//  margin-top: 50px;
-//}
+.dark-horizontal-separator {
+  height: 3px;
+  background-color: #2E2F30;
+  width: 100%;
+}
+
+.bt-info-button {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+.bt-secondary-button {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.icon-light {
+  color: #e2e6ea;
+}
 
 body {
-  background-color: rgb(241, 241, 241);
+  background-color: #fafafa;
 }

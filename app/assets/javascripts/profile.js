@@ -1,27 +1,33 @@
-$(document).on('turbolinks:load', function() {
+// $(document).on('turbolinks:load', function() {
 
     // Follow/Unfollow button tapped
-    $('#follow-unfollow-button').on('click', function (e) {
-        e.preventDefault();
-        let profile_id = $(this).attr('profile_id');
-        $.ajax({
-            url: `/profile/${profile_id}/follow_unfollow`,
-            type: 'POST',
-            success: function (data) {
-                $('#follow-unfollow-button').empty();
-                // If the user follow to the other user
-                if (data.is_follow) {
-                    $('#follow-unfollow-button').html("<i class=\"fa fa-user-minus\"> </i>");
-                    $('#follow-unfollow-button').css("background-color", "#6c757d", "border-color", "#545b62");
-                } else {
-                    $('#follow-unfollow-button').html("<i class=\"fa fa-user-plus\"> </i>");
-                    $('#follow-unfollow-button').css("background-color", "#0069d9", "border-color", "#0062cc");
-                }
-            }
-        })
-    });
+    // $('#follow-unfollow-button').on('click', function (e) {
+    //     console.log('follow/unfollow button tapped');
+    //     e.preventDefault();
+    //     let profile_id = $(this).attr('profile_id');
+    //     $.ajax({
+    //         url: `/profile/${profile_id}/follow_unfollow`,
+    //         type: 'POST',
+    //         success: function (data) {
+    //             console.log('success');
+    //             // $('#follow-unfollow-button').empty();
+    //             // If the user follow to the other user
+    //             if (data.is_follow) {
+    //                 console.log('current_user start following to this user');
+    //                 $('#follow-unfollow-button').html("<i class=\"fa fa-user-minus\"> </i>");
+    //                 $('#follow-unfollow-button').css("background-color", "#6c757d", "border-color", "#545b62");
+    //                 $('#open-conversation-button').show();
+    //             } else {
+    //                 console.log('current_user ended following to this user');
+    //                 $('#follow-unfollow-button').html("<i class=\"fa fa-user-plus\"> </i>");
+    //                 $('#follow-unfollow-button').css("background-color", "#0069d9", "border-color", "#0062cc");
+    //                 $('#open-conversation-button').hide();
+    //             }
+    //         }
+    //     })
+    // });
 
-});
+// });
 
 
 function show_profile_avatar_preview(input) {

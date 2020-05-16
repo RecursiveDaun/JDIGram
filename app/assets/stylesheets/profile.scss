@@ -9,30 +9,71 @@
   padding-left: 20px;
 }
 
-
-// Images
-.profile-post-photo-section {
-  border-radius: 15px;
-  background-color: black;
-}
-
-.profile_post_photo {
+.profile-post-photo {
   border-radius: 15px;
 
-  padding: 0px 0px;
+  padding: 0px 0px 0px 0px;
 
-  width: 300px;
+  width: 90%;
   height: 300px;
   object-fit: cover;
 }
 
 .avatar_photo {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
 
   border-radius: 50%;
   border: 1px solid #c9c6c5;
 
   alignment: left;
   object-fit: cover;
+}
+
+#follow-unfollow-link,
+#open-conversation-link,
+#follow-unfollow-button,
+#open-conversation-button {
+  height: 25px;
+}
+
+#follow-unfollow-button,
+#open-conversation-button,
+#follow-unfollow-icon,
+#open-conversation-icon {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
+
+  border-radius: 5px;
+}
+
+#follow-unfollow-link,
+#open-conversation-link {
+  width: 40%;
+  height: 80%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+#follow-unfollow-button,
+#open-conversation-button {
+  max-width: 120px;
+  width: 100%;
+  height: 100%;
+}
+
+#follow-unfollow-icon,
+#open-conversation-icon {
+  height: 90%;
+}
+
+.profile-user-info-label-big {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.profile-user-info-label-medium {
+  font-size: 18px;
+  font-weight: 500;
 }

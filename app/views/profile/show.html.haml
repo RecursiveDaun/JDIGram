@@ -1,38 +1,66 @@
 .container
   .row
-    .col-lg-3
+    .col-lg-2
     -# Profile Info section
-    .col-lg-6
+    .col-lg-8
       .row.px-0-0.py-0-0.mx-0-0.my-0-0
         -# Profile Avatar
-        .col-lg-5.text-left
+        .col-lg-3.text-center.align-self-center
           - if @profile.avatar.attached?
             = image_tag @profile.avatar, class: 'avatar_photo'
           - else
             = image_tag 'user_avatar_placeholder.png', class: 'avatar_photo'
-        -# Profile username
-        .col-lg-5.text-left
-          %label{:class => 'username_label'}= @profile.name.blank? ? @profile.user.nickname : @profile.name
+
+        -# User info
+        .col-lg-9
           .row
-            -# Profile age
-            .col-lg-12.text-left
-              %label= @profile.age
-        -# Edit profile button OR follow/unfollow button
-        .col-lg-2.profile-action-button-div
-          = render partial: 'profile/profile_action_button'
-    .col-lg-3
+            .col-lg-4.align-self-center
+              %label{:class => 'profile-user-info-label-big'}=  @profile.name || @profile.user.nickname
+            .col-lg-2.align-self-center
+              %label{:class => 'profile-user-info-label-big'}= "#{@profile.age || '?'} y.o."
+            -# Edit profile button OR follow/unfollow button
+            .col-lg-6.pl-1.pr-1.align-self-center
+              = render partial: 'profile/profile_action_button'
+          .row.mt-2
+            .col-lg-3.text-left
+              %label{:class => 'profile-user-info-label-medium'}= "#{@profile.posts.count} posts"
+            .col-lg-3.text-left
+              %label{:class => 'profile-user-info-label-medium'}= "#{Friendship.where("owner_id = #{@profile.id}").count} followers"
+            .col-lg-3.text-left
+              %label{:class => 'profile-user-info-label-medium'}= "#{Friendship.where("follower_id = #{@profile.id}").count} following"
+            .col-lg-3
+    .col-lg-2
   .row.mt-5.text-left
-    .col-lg-3
-    .col-lg-6.text-center
+    .col-lg-1
+    .col-lg-10.text-center
       - if current_user.user_profile.id == params[:id].to_i
         = button_to new_post_path(@profile), method: :get, class: 'btn btn-primary' do
           %span Create new post
           %i.fa.fa-plus
-    .col-lg-6
-  .row.posts_row.text-center.mt-5.pt-5
-    .col-lg-12
-      - @posts.each do |post|
-        .row
-          .col-lg-12.mt-2
-            - if post.photo.attached?
-              = image_tag post.photo, class: 'profile_post_photo'
+      - else
+        .dark-horizontal-separator.mt-3
+      .row
+        .col-lg-12
+          %span{:style => "font-size: 30px; color: #138496;"}= "#{(@profile.name || @profile.user.nickname)} posts".upcase
+
+          -# Displays users posts
+          .row.mt-5.pt-5
+            .col-lg-12
+              - column_number = 0
+              - @posts.each do |post|
+                - if post.photo.attached?
+                  - if column_number % 3 == 0
+                    - column_number = 0
+                    .row.profile-post-box
+                      .col-lg-4.mt-2.profile-post-content
+                        = image_tag post.photo, class: 'profile-post-photo'
+                  - elsif column_number == 0
+                    .row.profile-post-box
+                      .col-lg-4.mt-2.profile-post-content
+                        = image_tag post.photo, class: 'profile-post-photo'
+                  - else
+                    .col-lg-4.mt-2.profile-post-content
+                      = image_tag post.photo, class: 'profile-post-photo'
+                  - column_number += 1
+    .col-lg-1
+

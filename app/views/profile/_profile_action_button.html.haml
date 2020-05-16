@@ -6,9 +6,10 @@
     = button_to profile_follow_unfollow_path(@profile), method: :post, class: 'btn btn-primary', id: 'follow-unfollow-button', profile_id: @profile.id do
       %i.fa.fa-user-plus
   - else
-    = button_to profile_follow_unfollow_path(@profile), method: :post, class: 'btn btn-secondary', id: 'follow-unfollow-button', profile_id: @profile.id do
-      %i.fa.fa-user-minus
-    -# = button_to conversation_index_path(@profile.id), method: :post, class: 'btn btn-primary', id: 'open-conversation-button' do
-    -#   %i.fa.fa-envelope
-    = link_to conversation_index_path(@profile.id), method: :post do
-      %i.fa.fa-envelope
+    .d-flex.flex-row.align-items-center.justify-content-end
+      = link_to profile_follow_unfollow_path(@profile), method: :post, id: 'follow-unfollow-link', profile_id: @profile.id do
+        = button_tag id: 'follow-unfollow-button', class: 'bt-secondary-button' do
+          %i.fa.fa-user-minus{:id => 'follow-unfollow-icon', :class => 'icon-light'}
+      = link_to conversation_index_path(@profile.id), method: :post, id: 'open-conversation-link', profile_id: @profile.id do
+        = button_tag id: 'open-conversation-button', class: 'bt-info-button' do
+          %i.fa.fa-envelope{:id => 'open-conversation-icon', :class => 'icon-light'}

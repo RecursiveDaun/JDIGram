@@ -37,7 +37,8 @@
               <%= link_to "Sign up",  new_user_registration_path, class: 'nav-link' %>
             </li>
           <%- else %>
-            <li class="nav-item">
+            <!-- User profile link-->
+            <li class="nav-item mr-2">
               <%= button_to profile_path(current_user.user_profile), method: :get, class: 'button_avatar_link_to_profile' do %>
                 <%- if current_user.user_profile.avatar.attached? %>
                   <%= image_tag current_user.user_profile.avatar, class: 'avatar_link_to_profile' %>
@@ -45,7 +46,6 @@
                   <%= image_tag 'user_avatar_placeholder.png', class: 'avatar_link_to_profile' %>
                 <% end %>
               <% end %>
-              <%#= link_to "Profile", profile_path(current_user.user_profile), class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "Friends", profile_friends_path(current_user.user_profile), class: 'nav-link' %>

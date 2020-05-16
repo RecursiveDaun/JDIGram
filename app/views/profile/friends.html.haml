@@ -10,9 +10,9 @@
           .col-lg-4
             // Avatar-link
             - if friend.avatar.attached?
-              = image_tag friend.avatar, class: 'avatar_photo'
+              = image_tag friend.avatar, class: 'avatar_photo', width: 150, height: 150
             - else
-              = image_tag 'user_avatar_placeholder.png', class: 'avatar_photo'
+              = image_tag 'user_avatar_placeholder.png', class: 'avatar_photo', width: 150, height: 150
             // Name in profile link
             = link_to "#{friend.name || friend.user.nickname}", profile_path(friend), class: 'link_to_profile'
           .col-lg-8
