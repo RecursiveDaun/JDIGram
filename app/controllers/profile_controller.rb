@@ -37,12 +37,12 @@ class ProfileController < ApplicationController
     friendship = Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.user_profile.id).first
     if friendship.present?
       friendship.destroy
-      render json: { is_follow: false }
+      render json: { is_follow: "false" }
     else
       friendship = Friendship.new
       friendship.update_attributes(owner_id: @profile.id, follower_id: current_user.user_profile.id)
       friendship.save
-      render json: { is_follow: true }
+      render json: { is_follow: "true" }
     end
   end
 
