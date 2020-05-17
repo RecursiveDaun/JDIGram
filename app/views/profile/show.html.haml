@@ -42,22 +42,23 @@
 
           -# Displays users posts
           .row.mt-5.pt-5
-            .col-lg-12
-              - column_number = 0
-              - @posts.each do |post|
-                - if post.photo.attached?
-                  - if column_number % 3 == 0
-                    - column_number = 0
-                    .row.profile-post-box
-                      .col-lg-4.mt-2.profile-post-content
-                        = image_tag post.photo, class: 'profile-post-photo'
-                  - elsif column_number == 0
-                    .row.profile-post-box
-                      .col-lg-4.mt-2.profile-post-content
-                        = image_tag post.photo, class: 'profile-post-photo'
-                  - else
-                    .col-lg-4.mt-2.profile-post-content
-                      = image_tag post.photo, class: 'profile-post-photo'
-                  - column_number += 1
+            .col-lg-12.user-posts-grid-column
+              = render partial: 'user_posts_grid'
+              -# - column_number = 0
+              -# - @posts.each do |post|
+                -#call js method
+                -# - if post.photo.attached?
+                -#   - if column_number % 3 == 0 && column_number != 0
+                -#     - column_number = 0
+                -#     .row.profile-post-box
+                -#       .col-lg-4.mt-2.profile-post-content
+                -#         = image_tag post.photo, class: 'profile-post-photo'
+                -#   - elsif column_number == 0
+                -#     .row.profile-post-box
+                -#       .col-lg-4.mt-2.profile-post-content
+                -#         = image_tag post.photo, class: 'profile-post-photo'
+                -#   - else
+                -#     .col-lg-4.mt-2.profile-post-content
+                -#       = image_tag post.photo, class: 'profile-post-photo'
+                -#   - column_number += 1
     .col-lg-1
-

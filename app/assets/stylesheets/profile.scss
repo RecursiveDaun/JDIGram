@@ -1,14 +1,6 @@
 // Place all the styles related to the Profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.user_info {
-  display: flex;
-}
-
-.user_avatar_container {
-  padding-left: 20px;
-}
-
 .profile-post-photo {
   border-radius: 15px;
 
@@ -80,4 +72,10 @@
 .profile-user-info-label-medium {
   font-size: 18px;
   font-weight: 500;
+}
+
+.user-profile-post-image {
+  width: 293px;
+  height: 293px;
+  object-fit: cover;
 }

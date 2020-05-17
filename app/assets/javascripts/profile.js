@@ -23,6 +23,10 @@ $(document).on('turbolinks:load', function() {
         })
     });
 
+    function temo(arg1, arg2) {
+
+    };
+
 });
 
 
