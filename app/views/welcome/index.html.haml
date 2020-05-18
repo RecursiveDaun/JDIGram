@@ -51,7 +51,8 @@
                 - post.comments.each do |comment|
                   .row.comment-row
                     .col-lg-12
-                      = link_to "#{comment.user_profile.name || comment.user_profile.user.nickname}", profile_path(post.user_profile)
+                      - commentator_name = comment.user_profile.name.present? ? comment.user_profile.name : comment.user_profile.user.nickname
+                      = link_to "#{commentator_name}", profile_path(post.user_profile)
                       %br
                       %label= comment.text
       .col-lg-2
