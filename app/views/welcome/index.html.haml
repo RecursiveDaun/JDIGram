@@ -18,7 +18,7 @@
                 - if post.user_profile.name.present?
                   = link_to "#{post.user_profile.name}", profile_path(post.user_profile), class: 'link_to_profile'
                 - else
-                  = link_to "#{current_user.nickname}", profile_path(post.user_profile), class: 'link_to_profile'
+                  = link_to "#{post.user_profile.user.nickname}", profile_path(post.user_profile), class: 'link_to_profile'
 
             -# Post photo
             .row.pt-2.text-center
@@ -53,6 +53,8 @@
                     .col-lg-12
                       - if post.user_profile.name.present?
                         = link_to "#{post.user_profile.name}", profile_path(post.user_profile)
+                      - else
+                        = link_to "#{post.user_profile.user.nickname}", profile_path(post.user_profile)
                       %br
                       %label= comment.text
       .col-lg-2
