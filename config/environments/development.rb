@@ -99,6 +99,5 @@ Rails.application.configure do
   config.log_tags = [:uuid]
   config.log_formatter = MyLogFormatter.new
 
-
-
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 end

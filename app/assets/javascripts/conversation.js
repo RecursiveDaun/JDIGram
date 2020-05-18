@@ -6,6 +6,7 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
     },
 
     received: function (data) {
+        data['message'] = data['message'].replace("http://example.org", "jdigram.herokuapp.com");
         let messages_div = $('#messages');
         messages_div.append(data['message']);
     },
