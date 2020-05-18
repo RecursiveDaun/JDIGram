@@ -90,4 +90,9 @@ Rails.application.configure do
     Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['BONSAI_URL']
   end
 
+  # Action cable
+  config.web_socket_server_url = "wss://jdigram.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://jdigram.herokuapp.com', 'http://jdigram.herokuapp.com']
+
+
 end
