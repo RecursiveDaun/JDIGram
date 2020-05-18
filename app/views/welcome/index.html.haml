@@ -43,7 +43,7 @@
                 .input-group
                   = text_area_tag :comment_text, nil, class: 'form-control', id: "comment-text-area-#{post.id}"
                   = link_to '#', class: "add-comment-link", post_id: post.id do
-                    %button{:class => 'btn btn-secondary'}= 'Add'
+                    %button{:class => 'btn btn-secondary input-group'}= 'Add'
 
             -# List of all comments
             .row.pt-2.mb-3
