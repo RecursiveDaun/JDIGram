@@ -1,7 +1,6 @@
 - post_number = 0
 - @posts.each do |post|
   :javascript
-    console.log("#{post_number}")
     if ("#{post_number}" % 3 === 0) {
       $('.user-posts-grid-column').append(`
         <div class="row mt-2" id="post-photo-row-#{post_number / 3}"> </div>

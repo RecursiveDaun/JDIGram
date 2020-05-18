@@ -1,3 +1,18 @@
+App.conversation = App.cable.subscriptions.create("ConversationChannel", {
+    connected: function () {
+    },
+
+    disconnected: function () {
+    },
+
+    received: function (data) {
+        let messages_div = $('#messages');
+        messages_div.append(data['message']);
+    },
+
+});
+
+
 $(document).on('turbolinks:load', function() {
 
     // Display sent message
@@ -16,18 +31,8 @@ $(document).on('turbolinks:load', function() {
             data: {
                 message_text: message_text
             },
-            success: function (data) {
+            success: function () {
                 $(`#new-message-text-area`).val("");
-                $(`.messages-div`).append(`
-                    <div class="row">
-                        <div class="col-lg-2"> 
-                            <label>${data.username}</label>
-                        </div>    
-                        <div class="col-lg-10">
-                            <label>${message_text}</label>
-                        </div>
-                    </div>
-                `);
             }
         })
     })

@@ -1,0 +1,6 @@
+.row
+  .col-lg-2
+    %label= UserProfile.find(message.author_id).name
+  .col-lg-10
+    %label= message.body
+  .col-lg-2

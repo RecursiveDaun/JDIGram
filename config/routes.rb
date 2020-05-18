@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => '/cable'
+
   root :to => 'welcome#index'
   get 'search', to: 'search#search'
 
