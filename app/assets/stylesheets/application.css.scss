@@ -60,6 +60,19 @@
   color: #e2e6ea;
 }
 
+.white-background {
+  background-color: white;
+}
+
+.soft-rounded-borders {
+  border-radius: 5px;
+}
+
 body {
   background-color: #fafafa;
+}
+
+span {
+  -ms-word-break: break-all;
+  word-break: break-all;
 }

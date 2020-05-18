@@ -1,6 +1,12 @@
 .row
-  .col-lg-2
-    %label= UserProfile.find(message.author_id).name
-  .col-lg-10
-    %label= message.body
-  .col-lg-2
+  - author = UserProfile.find(message.author_id)
+  .col-lg-3
+  .col-lg-1.text-center.white-background
+    = button_to profile_path(author), method: :get, class: 'button_avatar_link_to_profile align-middle mt-2' do
+      = image_tag author.avatar.attached? ? author.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
+  .col-lg-5.text-left.white-background
+    .row
+      = link_to "#{ author.name || author.user.nickname }", profile_path(author.id)
+    .row
+      %span.message-body= message.body
+  .col-lg-3

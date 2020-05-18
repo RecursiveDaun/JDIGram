@@ -15,7 +15,7 @@ class User < ApplicationRecord
   end
 
   #================== Associations ==================
-  has_one :user_profile
+  has_one :user_profile, dependent: :destroy
 
   #================== Validates And Collbacks ==================
   validates :link_hash, length: { is: 10 }

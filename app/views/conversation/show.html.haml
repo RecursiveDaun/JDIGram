@@ -1,14 +1,13 @@
-%h1= 'Conversation'
 .container
   .row
     .col-lg-12#messages{:data-conversation-id => "#{@conversation.id}"}
       - @conversation.messages.each do |message|
         = render partial: 'message/message', locals: { message: message }
   -# Send new message
-  .row
-    .col-lg-2
-    .col-lg-8
-      = text_area_tag :body, nil, class: 'form-input', id: 'new-message-text-area'
-      = link_to '#', id: 'send-message', conversation_id: @conversation.id do
-        %button{:class => 'btn btn-secondary'}= 'Send'
-    .col-lg-2
+  .row.mt-4.mb-5
+    .col-lg-3
+    .col-lg-6.white-background.soft-rounded-borders
+      .input-group
+        = text_area_tag :body, nil, class: 'form-control custom-control', id: 'new-message-text-area'
+        %button.input-group-addon.btn.btn-primary#send-message{:data => {:conversation_id => "#{@conversation.id}"} }= "Send"
+    .col-lg-3

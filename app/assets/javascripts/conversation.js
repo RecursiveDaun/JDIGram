@@ -15,7 +15,6 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
 
 $(document).on('turbolinks:load', function() {
 
-    // Display sent message
     $('#send-message').on('click', function (e) {
         e.preventDefault();
 
@@ -24,7 +23,7 @@ $(document).on('turbolinks:load', function() {
             return
         }
 
-        let conversation_id = $(this).attr('conversation_id');
+        let conversation_id = $(this).data('conversation-id');
         $.ajax({
             url: `/conversation/${conversation_id}/message`,
             type: 'POST',
