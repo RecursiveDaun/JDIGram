@@ -41,9 +41,9 @@
             .row.pt-1
               .col-lg-12
                 .input-group
-                  = text_area_tag :comment_text, nil, class: 'form-control', id: "comment-text-area-#{post.id}"
+                  = text_area_tag :comment_text, nil, class: 'form-control custom-control', id: "comment-text-area-#{post.id}"
                   = link_to '#', class: "add-comment-link", post_id: post.id do
-                    %button{:class => 'btn btn-secondary input-group'}= 'Add'
+                    %span{:class => 'input-group-addon btn btn-secondary'}= 'Add'
 
             -# List of all comments
             .row.pt-2.mb-3
@@ -53,8 +53,6 @@
                     .col-lg-12
                       - if post.user_profile.name.present?
                         = link_to "#{post.user_profile.name}", profile_path(post.user_profile)
-                      - else
-                        = link_to "#{post.user_profile.user.nickname}", profile_path(post.user_profile)
                       %br
                       %label= comment.text
       .col-lg-2
