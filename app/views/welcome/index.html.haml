@@ -51,8 +51,7 @@
                 - post.comments.each do |comment|
                   .row.comment-row
                     .col-lg-12
-                      - if post.user_profile.name.present?
-                        = link_to "#{post.user_profile.name}", profile_path(post.user_profile)
+                      = link_to "#{comment.user_profile.name || comment.user_profile.user.nickname}", profile_path(post.user_profile)
                       %br
                       %label= comment.text
       .col-lg-2
