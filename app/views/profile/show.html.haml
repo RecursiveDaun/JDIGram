@@ -14,8 +14,8 @@
         -# User info
         .col-lg-9
           .d-flex.justify-content-between
-            %label{:class => 'profile-user-info-label-big'}=  @profile.name || @profile.user.nickname
-            %label{:class => 'profile-user-info-label-big'}= "#{@profile.age || '?'} y.o."
+            %label{:class => 'profile-user-info-label-big'}=  "#{@profile.name.present? ? @profile.name : @profile.user.nickname}"
+            %label{:class => 'profile-user-info-label-big'}= "#{@profile.age.present? ? @profile.age : '?'} y.o."
             -# Edit profile button OR follow/unfollow button
             = render partial: 'profile/profile_action_button'
           .row.mt-2

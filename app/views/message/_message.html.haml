@@ -6,7 +6,7 @@
       = image_tag author.avatar.attached? ? author.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
   .col-lg-5.text-left.white-background
     .row
-      = link_to "#{ author.name || author.user.nickname }", profile_path(author.id)
+      = link_to "#{ author.name.present? ? author.name : author.user.nickname }", profile_path(author.id)
       %span.ml-2.message-time=message.created_at.strftime('%H:%M')
     .row
       %span.message-body= message.body
