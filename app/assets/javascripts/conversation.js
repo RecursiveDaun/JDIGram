@@ -9,6 +9,8 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
         data['message'] = data['message'].replace("http://example.org", "http://jdigram.herokuapp.com");
         let messages_div = $('#messages');
         messages_div.append(data['message']);
+        // Scroll to the bottom
+        window.scrollTo(0, document.body.scrollHeight);
     },
 
 });
