@@ -31,7 +31,7 @@ class User < ApplicationRecord
   }
 
   settings ES_SETTING do
-    mappings dynamic: 'true' do
+    mappings do
       indexes :nickname, type: 'text', analyzer: 'my_analyzer'
       indexes :email, type: 'text', analyzer: 'my_analyzer'
     end
