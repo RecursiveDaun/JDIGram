@@ -25,7 +25,8 @@ class User < ApplicationRecord
                   tokenizer: 'standard',
                   filter: [ 'lowercase', 'mynGram' ]
               }
-          }
+          },
+          max_ngram_diff: 50
       }
   }
 
