@@ -61,7 +61,7 @@ class PostsController < ApplicationController
                                user_profile_id: current_user.user_profile.id)
     @comment.save
     current_user_profile = current_user.user_profile
-    render json: { username: "#{current_user_profile.name || current_user.nickname}",
+    render json: { username: "#{current_user_profile.name.present? ? current_user_profile.name : current_user.nickname}",
                    user_profile_id: current_user_profile.id,
                    comment_text: comment_text }
   end
