@@ -9,7 +9,8 @@ class User < ApplicationRecord
 
   ES_SETTING = {
       index: {
-          number_of_shards: 1
+          number_of_shards: 1,
+          max_ngram_diff: 50
       },
       analysis: {
           filter: {
@@ -25,8 +26,7 @@ class User < ApplicationRecord
                   tokenizer: 'standard',
                   filter: [ 'lowercase', 'mynGram' ]
               }
-          },
-          max_ngram_diff: 50
+          }
       }
   }
 
