@@ -13,13 +13,16 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new
+    post_image_data = post_params[:post_image]
+    if post_params[:description].blank? || post_image_data.blank?
+      flash[:alert] = "Please, fill all fields"
+      render 'posts/new'
+      return
+    end
+
     @post.description = post_params[:description]
     @post.user_profile = @user_profile
-
-    post_image_data = params[:post][:post_image]
-    if !post_image_data.nil?
-      @post.photo.attach(post_image_data)
-    end
+    @post.photo.attach(post_image_data)
 
     if @post.save
       redirect_to profile_path(@user_profile)
