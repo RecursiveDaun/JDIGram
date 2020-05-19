@@ -14,9 +14,10 @@ $(document).on('turbolinks:load', function() {
     });
 
     // Add comment clicked
-    $('.add-comment-link').on('click', function (e) {
+    $('#add-comment-button').on('click', function (e) {
         e.preventDefault();
-        let post_id = $(this).attr('post_id');
+        let post_id = $(this).data('post-id');
+
         $.ajax({
             url: `/posts/${post_id}/add_comment`,
             type: 'POST',

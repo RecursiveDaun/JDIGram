@@ -42,8 +42,7 @@
               .col-lg-12
                 .input-group
                   = text_area_tag :comment_text, nil, class: 'form-control custom-control', id: "comment-text-area-#{post.id}"
-                  = link_to '#', class: "add-comment-link", post_id: post.id do
-                    %span{:class => 'input-group-addon btn btn-secondary'}= 'Add'
+                  %button.input-group-addon.btn.btn-primary#add-comment-button{:data => {:post_id => "#{post.id}"} }= "Add"
 
             -# List of all comments
             .row.pt-2.mb-3
