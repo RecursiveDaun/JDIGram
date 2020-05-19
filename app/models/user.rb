@@ -16,7 +16,7 @@ class User < ApplicationRecord
               mynGram: {
                   type: 'ngram',
                   min_gram: 2,
-                  max_gram: 8
+                  max_gram: 3
               }
           },
           analyzer: {
