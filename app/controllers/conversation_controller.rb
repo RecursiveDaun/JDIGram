@@ -30,7 +30,6 @@ class ConversationController < ApplicationController
     redirect_to conversation_path(conversation.id)
   end
 
-
   private
 
   def find_conversation_by_params

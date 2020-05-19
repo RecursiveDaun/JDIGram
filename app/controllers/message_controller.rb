@@ -6,7 +6,7 @@ class MessageController < ApplicationController
                               author_id: current_user.user_profile.id,
                               conversation_id: params[:conversation_id])
     if message.save
-      username = current_user.user_profile.name || current_user.nickname
+      username = current_user.user_profile.name.present? ? current_user.user_profile.name : current_user.nickname
       render json: { username: username }
     end
   end
