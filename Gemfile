@@ -35,7 +35,7 @@ gem 'haml-rails'
 gem 'bootstrap'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
-
+gem 'will_paginate'
 # Authentication
 gem 'devise'
 

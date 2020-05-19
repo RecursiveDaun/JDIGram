@@ -37,6 +37,20 @@ $(document).on('turbolinks:load', function() {
                 `);
             }
         })
-    })
+    });
+
+    if ($('.pagination').length && $('#news_feed').length) {
+        $(window).scroll(function() {
+            let url;
+            url = $('.pagination .next_page').attr('href');
+            if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+                $('.pagination').text("Loading more posts...");
+                return $.getScript(url);
+            }
+        });
+        $(window).scroll();
+    } else {
+        $('.pagination').text("No more posts");
+    }
 
 });

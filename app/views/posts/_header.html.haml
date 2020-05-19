@@ -1,0 +1,13 @@
+-# User profile links (avatar and name)
+.row.pt-2
+  .col-lg-1
+    = button_to profile_path(post.user_profile), method: :get, class: 'button_avatar_link_to_profile' do
+      - if post.user_profile.avatar.attached?
+        = image_tag post.user_profile.avatar, class: 'avatar_link_to_profile'
+      - else
+        = image_tag 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
+  .col-lg-11.text-left
+    - if post.user_profile.name.present?
+      = link_to "#{post.user_profile.name}", profile_path(post.user_profile), class: 'link_to_profile'
+    - else
+      = link_to "#{post.user_profile.user.nickname}", profile_path(post.user_profile), class: 'link_to_profile'
