@@ -5,6 +5,36 @@ class User < ApplicationRecord
   #================== Elasticsearch ==================
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  document_type "json"
+
+  ES_SETTING = {
+      index: {
+          number_of_shards: 1
+      },
+      analysis: {
+          filter: {
+              mynGram: {
+                  type: 'ngram',
+                  min_gram: 2,
+                  max_gram: 8
+              }
+          },
+          analyzer: {
+              my_analyzer: {
+                  type: 'custom',
+                  tokenizer: 'standard',
+                  filter: [ 'lowercase', 'mynGram' ]
+              }
+          }
+      }
+  }
+
+  settings ES_SETTING do
+    mappings dynamic: 'true' do
+      indexes :nickname, type: 'text', analyzer: 'my_analyzer'
+      indexes :email, type: 'text', analyzer: 'my_analyzer'
+    end
+  end
 
   def update_es
     begin
