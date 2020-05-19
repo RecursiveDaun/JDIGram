@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     @post.photo.attach(post_image_data)
 
     if @post.save
+      flash[:alert] = nil
       redirect_to profile_path(@user_profile)
     else
       render 'posts/new'
