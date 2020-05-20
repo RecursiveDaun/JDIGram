@@ -46,7 +46,7 @@ class User < ApplicationRecord
   end
 
   #================== Associations ==================
-  has_one :user_profile, dependent: :destroy
+  has_one :profile, class_name: 'UserProfile', foreign_key: 'user_id', dependent: :destroy
 
   #================== Validates And Collbacks ==================
   validates :link_hash, length: { is: 10 }
