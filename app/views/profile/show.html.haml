@@ -38,7 +38,7 @@
       .dark-horizontal-separator.mt-3
       .row
         .col-lg-12
-          %span{:style => "font-size: 30px; color: #138496;"}= "#{(@profile.name || @profile.user.nickname)} posts".upcase
+          %span{:style => "font-size: 30px; color: #138496;"}= "#{(@profile.name.present? ? @profile.name : @profile.user.nickname)} posts".upcase
 
           -# Displays users posts
           .row.mt-5.pt-5
