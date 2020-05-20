@@ -64,7 +64,7 @@ class UserProfileController < ApplicationController
     if is_id_number?(profile_id)
       @profile = UserProfile.find(profile_id)
     else
-      @profile = User.where('link_hash = ?', profile_id).first.user_profile
+      @profile = User.where('link_hash = ?', profile_id).first.profile
     end
   end
 

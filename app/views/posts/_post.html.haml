@@ -12,33 +12,34 @@
           .col-lg-12
             = image_tag post.photo, class: 'post_photo'
 
-            -# Add Like
+        -# Add Like
         .row.pt-2
           .col-lg-12.text-left
             = link_to '#', class: "like-link", post_id: post.id do
               %i.fa.fa-heart
               %label{:id => "likes-count-label-#{post.id}"}= post.likes.count
 
-            -# Description of the post
-        .row.pt-2
-          .col-lg-12
-            %p= post.description
+        .row.mt-1
+          .light-gray-horizontal-separator
 
-            -# Add comment
-        .row.pt-1
+        -# Post description
+        .row.mt-1
+          .col-lg-12
+            %span.post-description= post.description
+
+        .row.mt-1
+          .light-gray-horizontal-separator
+
+        -# Add comment
+        .row.mt-2
           .col-lg-12
             .input-group
               = text_area_tag :comment_text, nil, class: 'form-control custom-control', id: "comment-text-area-#{post.id}"
               %button.input-group-addon.btn.btn-primary#add-comment-button{:data => {:post_id => "#{post.id}"} }= "Add"
 
-        -# List of all comments
+        -# List of comments to the post
         .row.pt-2.mb-3
           .col-lg-12{:id => "comments-to-post-#{post.id}"}
             - post.comments.each do |comment|
-              .row.comment-row
-                .col-lg-12
-                  - commentator_name = comment.user_profile.name.present? ? comment.user_profile.name : comment.user_profile.user.nickname
-                  = link_to "#{commentator_name}", profile_path(comment.user_profile)
-                  %br
-                  %label= comment.text
+              = render partial: 'partials/comments/comment', locals: { comment: comment }
   .col-lg-2
