@@ -43,6 +43,9 @@ gem 'devise'
 gem 'elasticsearch-model', '~> 7'
 gem 'elasticsearch-rails', '~> 7'
 
+# Helpers
+gem 'rails_refactor'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

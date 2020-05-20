@@ -1,4 +1,4 @@
-class ProfileController < ApplicationController
+class UserProfileController < ApplicationController
 
   # ======================== Filters ========================
   before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow_unfollow, :friends]

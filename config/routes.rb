@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get 'search', to: 'search#search'
 
   resources :welcome, only: [:index]
-  resources :profile, only: [:show, :edit, :update] do
-    post 'follow_unfollow', to: 'profile#follow_unfollow'
-    get 'friends', to: 'profile#friends'
+  resources :user_profile, only: [:show, :edit, :update] do
+    post 'follow_unfollow', to: 'user_profile#follow_unfollow'
+    get 'friends', to: 'user_profile#friends'
   end
   resources :posts, only: [:new, :create, :update, :destroy] do
     member do
