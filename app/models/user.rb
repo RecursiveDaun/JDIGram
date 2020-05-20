@@ -55,6 +55,10 @@ class User < ApplicationRecord
     generate_unique_link_hash
   end
 
+  after_save do
+    create_profile
+  end
+
   after_commit :update_es, on: [:update]
   after_commit on: [:destroy] do
     __elasticsearch__.delete_document
@@ -87,6 +91,13 @@ class User < ApplicationRecord
     begin
       self.link_hash = SecureRandom.hex(5)
     end while self.class.exists?(link_hash: self.link_hash)
+  end
+
+  def create_profile
+    profile = UserProfile.new
+    profile.user = self
+    profile.name = self.nickname
+    profile.save!
   end
 
 end
