@@ -7,6 +7,7 @@ class User < ApplicationRecord
   include Elasticsearch::Model::Callbacks
   if Rails.env.development
     document_type "json"
+  end
 
   ES_SETTING = {
       index: {

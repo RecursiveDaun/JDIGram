@@ -18,6 +18,7 @@ class UserProfile < ApplicationRecord
 
   if Rails.env.development
     document_type "json"
+  end
 
   ES_SETTING_TWO = {
       analysis: {
