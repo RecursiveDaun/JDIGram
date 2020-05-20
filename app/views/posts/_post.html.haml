@@ -31,14 +31,14 @@
               = text_area_tag :comment_text, nil, class: 'form-control custom-control', id: "comment-text-area-#{post.id}"
               %button.input-group-addon.btn.btn-primary#add-comment-button{:data => {:post_id => "#{post.id}"} }= "Add"
 
-            -# List of all comments
+        -# List of all comments
         .row.pt-2.mb-3
           .col-lg-12{:id => "comments-to-post-#{post.id}"}
             - post.comments.each do |comment|
               .row.comment-row
                 .col-lg-12
                   - commentator_name = comment.user_profile.name.present? ? comment.user_profile.name : comment.user_profile.user.nickname
-                  = link_to "#{commentator_name}", profile_path(post.user_profile)
+                  = link_to "#{commentator_name}", profile_path(comment.user_profile)
                   %br
                   %label= comment.text
   .col-lg-2
