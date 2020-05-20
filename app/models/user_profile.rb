@@ -15,10 +15,7 @@ class UserProfile < ApplicationRecord
   #================== Elasticsearch ==================
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
-
-  if Rails.env.development
-    document_type "json"
-  end
+  # document_type "json"
 
   ES_SETTING_TWO = {
       analysis: {
