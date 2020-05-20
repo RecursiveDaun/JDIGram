@@ -6,6 +6,7 @@ class SearchController < ApplicationController
       return
     end
     @users = User.search(params['search-keyword'])
+    @user_profiles = UserProfile.search(params['search-keyword'])
     render :search_results
   end
 

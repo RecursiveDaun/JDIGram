@@ -5,7 +5,8 @@ class User < ApplicationRecord
   #================== Elasticsearch ==================
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
-  # document_type "json"
+  if Rails.env.development
+    document_type "json"
 
   ES_SETTING = {
       index: {
