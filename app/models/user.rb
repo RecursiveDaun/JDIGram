@@ -97,6 +97,7 @@ class User < ApplicationRecord
     profile = UserProfile.new
     profile.user = self
     profile.name = self.nickname
+    profile.age = "?"
     profile.save!
   end
 

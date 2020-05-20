@@ -5,7 +5,7 @@
     .col-lg-8
       .row.px-0-0.py-0-0.mx-0-0.my-0-0
         -# Profile Avatar
-        .col-lg-3.text-center.align-self-center
+        .col-lg-3.text-center.align-self-center{:style => "border-right: 1px solid gray;"}
           - if @profile.avatar.attached?
             = image_tag @profile.avatar, class: 'avatar_photo'
           - else
@@ -13,28 +13,15 @@
 
         -# User info
         .col-lg-9
-          .d-flex.justify-content-between
-            %label{:class => 'profile-user-info-label-big'}=  "#{@profile.name.present? ? @profile.name : @profile.user.nickname}"
-            %label{:class => 'profile-user-info-label-big'}= "#{@profile.age.present? ? @profile.age : '?'} y.o."
-            -# Edit profile button OR follow/unfollow button
-            = render partial: 'profile/profile_action_button'
-          .row.mt-2
-            .col-lg-9
-              .profile-user-info-label-medium
-                .d-flex.justify-content-between
-                  %label= "#{@profile.posts.count} posts"
-                  %label= "#{Friendship.where("owner_id = #{@profile.id}").count} followers"
-                  %label= "#{Friendship.where("follower_id = #{@profile.id}").count} following"
-            .col-lg-3
+          = render partial: 'partials/user_profile/user_info'
     .col-lg-2
   .row.mt-5.text-left
     .col-lg-1
     .col-lg-10.text-center
-      - if current_user.user_profile.id == params[:id].to_i
+      - if current_user.profile.id == params[:id].to_i
         = button_to new_post_path(@profile), method: :get, class: 'btn btn-primary' do
           %span Create new post
           %i.fa.fa-plus
-      -# - else
       .dark-horizontal-separator.mt-3
       .row
         .col-lg-12
@@ -44,21 +31,4 @@
           .row.mt-5.pt-5
             .col-lg-12.user-posts-grid-column
               = render partial: 'user_posts_grid'
-              -# - column_number = 0
-              -# - @posts.each do |post|
-                -#call js method
-                -# - if post.photo.attached?
-                -#   - if column_number % 3 == 0 && column_number != 0
-                -#     - column_number = 0
-                -#     .row.profile-post-box
-                -#       .col-lg-4.mt-2.profile-post-content
-                -#         = image_tag post.photo, class: 'profile-post-photo'
-                -#   - elsif column_number == 0
-                -#     .row.profile-post-box
-                -#       .col-lg-4.mt-2.profile-post-content
-                -#         = image_tag post.photo, class: 'profile-post-photo'
-                -#   - else
-                -#     .col-lg-4.mt-2.profile-post-content
-                -#       = image_tag post.photo, class: 'profile-post-photo'
-                -#   - column_number += 1
     .col-lg-1
