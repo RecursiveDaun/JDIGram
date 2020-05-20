@@ -12,4 +12,7 @@
             %label= "#{chat_companion.name.present? ? chat_companion.name : chat_companion.user.nickname}"
           -# The latest message
           .row.conversation-latest-message-row
-            %label= conv.messages.last.body
+            - if conv.messages.last.present?
+              %label= conv.messages.last.body
+            - else
+              %label= "No messages with this user"
