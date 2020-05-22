@@ -1,34 +1,31 @@
 .container
   .row
-    .col-lg-2
-    -# Profile Info section
-    .col-lg-8
-      .row.px-0-0.py-0-0.mx-0-0.my-0-0
-        -# Profile Avatar
-        .col-lg-3.text-center.align-self-center{:style => "border-right: 1px solid gray;"}
-          - if @profile.avatar.attached?
-            = image_tag @profile.avatar, class: 'avatar_photo'
-          - else
-            = image_tag 'user_avatar_placeholder.png', class: 'avatar_photo'
-
-        -# User info
-        .col-lg-9
-          = render partial: 'partials/user_profile/user_info'
-    .col-lg-2
-  .row.mt-5.text-left
+    .col-lg-3
+    -# User avatar
+    .col-lg-2.text-center
+      - if @profile.avatar.attached?
+        = image_tag @profile.avatar, class: 'avatar-photo'
+      - else
+        = image_tag 'user_avatar_placeholder.png', class: 'avatar-photo'
+    -# User info
+    .col-lg-4.px-0
+      = render partial: 'partials/user_profile/user_info'
+    .col-lg-3
+  .row.mt-5.mb-5.text-left
     .col-lg-1
     .col-lg-10.text-center
       - if current_user.profile.id == params[:id].to_i
         = button_to new_post_path(@profile), method: :get, class: 'btn btn-primary' do
           %span Create new post
           %i.fa.fa-plus
-      .dark-horizontal-separator.mt-3
-      .row
-        .col-lg-12
-          %span{:style => "font-size: 30px; color: #138496;"}= "#{(@profile.name.present? ? @profile.name : @profile.user.nickname)} posts".upcase
+      - if @profile.posts.present?
+        .dark-horizontal-separator.mt-3
+        .row
+          .col-lg-12
+            %span{:style => "font-size: 30px; color: #138496;"}= "#{@profile.name} posts".upcase
 
-          -# Displays users posts
-          .row.mt-5.pt-5
-            .col-lg-12.user-posts-grid-column
-              = render partial: 'user_posts_grid'
+            -# Displays users posts
+            .row.pt-5
+              .col-lg-12.user-posts-grid-column
+                = render partial: 'user_posts_grid'
     .col-lg-1

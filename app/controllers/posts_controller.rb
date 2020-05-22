@@ -21,12 +21,12 @@ class PostsController < ApplicationController
     end
 
     @post.description = post_params[:description]
-    @post.user_profile = @user_profile
+    @post.author = @user_profile
     @post.photo.attach(post_image_data)
 
     if @post.save
       flash[:alert] = nil
-      redirect_to profile_path(@user_profile)
+      redirect_to user_profile_path(@user_profile)
     else
       render 'posts/new'
     end
@@ -37,11 +37,11 @@ class PostsController < ApplicationController
 
   # =================== Custom Actions ===================
   def on_like_clicked
-    @like = Like.where(user_profile_id: current_user.user_profile.id, post_id: @post.id).first
+    @like = Like.where(author_id: current_user.profile.id, post_id: @post.id).first
     if @like.blank?
       @like = Like.new
       @like.post = @post
-      @like.user_profile = current_user.user_profile
+      @like.author = current_user.profile
       @like.save
     else
       Like.destroy(@like.id)
@@ -58,10 +58,10 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comment.update_attributes(text: comment_text,
                                post_id: params[:id],
-                               user_profile_id: current_user.user_profile.id)
+                               author_id: current_user.profile.id)
     @comment.save
-    current_user_profile = current_user.user_profile
-    render json: { username: "#{current_user_profile.name.present? ? current_user_profile.name : current_user.nickname}",
+    current_user_profile = current_user.profile
+    render json: { username: current_user_profile.name,
                    user_profile_id: current_user_profile.id,
                    comment_text: comment_text }
   end
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   private
   # =================== Helpers ===================
   def find_user_profile_by_params
-    @user_profile = current_user.user_profile
+    @user_profile = current_user.profile
   end
 
   def find_post_by_params

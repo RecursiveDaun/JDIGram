@@ -1,7 +1,5 @@
 -# User profile links (avatar and name)
-.row.pt-2
-  .col-lg-1
-    = button_to user_profile_path(post.author), method: :get, class: 'button_avatar_link_to_profile' do
-      = image_tag post.author.avatar.attached? ? post.author.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
-  .col-lg-11.text-left
-    = link_to "#{post.author.name}", user_profile_path(post.author), class: 'link_to_profile'
+.d-flex.flex-row.align-items-center{:style => "height: 45px;"}
+  = button_to user_profile_path(post.author), method: :get, class: 'button_avatar_link_to_profile' do
+    = image_tag post.author.avatar.attached? ? post.author.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
+  = link_to "#{post.author.name}", user_profile_path(post.author), class: 'link_to_profile', style: "margin-left: 5px;"

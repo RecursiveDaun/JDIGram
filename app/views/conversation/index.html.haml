@@ -9,7 +9,7 @@
         .col-lg-11.text-left
           -# Chat companion name
           .row
-            %label= "#{chat_companion.name.present? ? chat_companion.name : chat_companion.user.nickname}"
+            %span= chat_companion.name
           -# The latest message
           .row.conversation-latest-message-row
             - if conv.messages.last.present?

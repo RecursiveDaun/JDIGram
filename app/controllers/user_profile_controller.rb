@@ -4,6 +4,11 @@ class UserProfileController < ApplicationController
   before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow_unfollow, :friends]
 
   # ======================== Display ========================
+
+  def new
+
+  end
+
   def show
     @posts = Post.all.where(user_profile_id: @profile)
   end

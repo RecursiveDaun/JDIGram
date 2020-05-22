@@ -1,20 +1,20 @@
-= form_for @profile, url: profile_path do |f|
+= form_for @profile, url: user_profile_path do |f|
   .container.text-center.mt-5
     %h2.pt-5 Edit your profile
     .row
       .col-lg-4
       .col-lg-4
         .row.pt-2
-          .col-lg-12
-            = f.text_field :name, placeholder: 'Your name', class: 'form-control'
+          -#.col-lg-12
+          = f.text_field :name, placeholder: 'Your name', class: 'form-control'
         .row.pt-2
-          .col-lg-12
-            = f.text_field :age, placeholder: 'Your age', class: 'form-control'
+          -#.col-lg-12
+          = f.text_field :age, placeholder: 'Your age', class: 'form-control', value: @profile.age
         .row.pt-2
-          .col-lg-12
-            .custom-file.text-left
-              = f.file_field :avatar, id: :profile_avatar, accept: '.jpg, .png, .jpeg', class: 'custom-file-input', placeholder: 'Choose file', onchange: 'show_profile_avatar_preview(this);'
-              = f.label 'Upload your profile pic', id: :profile_avatar_label, class: "custom-file-label", for: :profile_avatar
+          -#.col-lg-12
+          .custom-file.text-left
+            = f.file_field :avatar, id: :profile_avatar, accept: '.jpg, .png, .jpeg', class: 'custom-file-input', placeholder: 'Choose file', onchange: 'show_profile_avatar_preview(this);'
+            = f.label 'Upload your profile pic', id: :profile_avatar_label, class: "custom-file-label", for: :profile_avatar
     .row.pt-3
       .col-lg-4
       .col-lg-4

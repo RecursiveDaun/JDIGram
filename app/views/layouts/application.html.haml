@@ -1,0 +1,51 @@
+!!!
+%html
+  %head
+    %title JDIGram
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    %nav#my-nav-bar.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      = link_to "JDIGram", welcome_index_path, class: 'navbar-brand'
+      %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarResponsive.collapse.navbar-collapse
+        %ul.navbar-nav.ml-auto
+          %li
+            = form_tag search_path, method: :get, id: "search-form" do
+              .col-lg-12.text-center
+                = text_field_tag 'search-keyword', nil, placeholder: "Find user", class: "form-control"
+        %ul.navbar-nav.ml-auto
+          - if current_user.nil?
+            %li.nav-item
+              = link_to "Log In", new_user_session_path, class: 'nav-link'
+            %li.nav-item
+              = link_to "Sign up",  new_user_registration_path, class: 'nav-link'
+          - else
+            %li#nav-user-avatar-button.nav-item.mr-2
+              = button_to user_profile_path(current_user.profile), method: :get, class: 'button_avatar_link_to_profile' do
+                - if current_user.profile.avatar.attached?
+                  = image_tag current_user.profile.avatar, class: 'avatar_link_to_profile'
+                - else
+                  = image_tag 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
+            %li.nav-item.dropdown
+              %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Profile
+              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+                = link_to "Profile", user_profile_path(current_user.profile), class: 'dropdown-item'
+                = link_to "Friends", user_profile_friends_path(current_user.profile), class: 'dropdown-item'
+                = link_to "Conversations",  conversation_index_path, class: 'dropdown-item'
+            %li.nav-item
+              = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link'
+
+  %body
+    .notice-container
+      - if notice
+        .alert.alert-success
+          = notice
+      - if alert
+        .alert.alert-danger
+          = alert
+    = yield

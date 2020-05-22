@@ -8,10 +8,11 @@
   object-fit: cover;
 }
 
-.avatar_photo {
-  width: 120px;
-  height: 120px;
-
+.avatar-photo {
+  width: 100%;
+  height: 100%;
+  max-width: 120px;
+  max-height: 120px;
   border-radius: 50%;
   border: 1px solid #c9c6c5;
 
@@ -86,6 +87,9 @@
 }
 
 #edit-profile-button {
-  background-color: #d4d4d4;
+  background-color: rgba(230, 230, 230, 0.8);
+  border-color: #d4d4d4;
+  font-weight: bold;
+  font-size: 12px;
   border-radius: 5px;
 }

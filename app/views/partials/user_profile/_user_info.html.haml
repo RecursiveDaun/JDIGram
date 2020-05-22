@@ -1,11 +1,7 @@
-.d-flex.justify-content-start
+.d-flex.justify-content-between.px-2
   %span.profile-username= @profile.name
-  -# Edit profile button OR follow/unfollow button
   = render partial: 'partials/user_profile/user_profile_action_buttons'
-.row.mt-2
-  .col-lg-9
-    .d-flex.justify-content-between.profile-user-info-label-medium
-      %span= "#{@profile.posts.count} posts"
-      %span= "#{Friendship.where("owner_id = #{@profile.id}").count} followers"
-      %span= "#{Friendship.where("follower_id = #{@profile.id}").count} following"
-  .col-lg-3
+.d-flex.justify-content-between.profile-user-info-label-medium.px-2
+  %span= "#{@profile.posts.count} posts"
+  %span= "#{Friendship.where("owner_id = #{@profile.id}").count} followers"
+  %span= "#{Friendship.where("follower_id = #{@profile.id}").count} following"
