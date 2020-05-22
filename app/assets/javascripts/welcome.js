@@ -50,7 +50,7 @@ $(document).on('click', '#add-comment-button', function(e) {
             $(`#comments-to-post-${post_id}`).append(`
                 <div class="row comment-row">
                     <div class="col-lg-12">
-                        <a href="/profile/${data.user_profile_id}">${data.username}</a>
+                        <a href="/profile/${data.author_id}">${data.username}</a>
                         <br>
                         <label>${data.comment_text}</label>
                     </div>

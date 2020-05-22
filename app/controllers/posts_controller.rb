@@ -62,7 +62,7 @@ class PostsController < ApplicationController
     @comment.save
     current_user_profile = current_user.profile
     render json: { username: current_user_profile.name,
-                   user_profile_id: current_user_profile.id,
+                   author_id: current_user_profile.id,
                    comment_text: comment_text }
   end
 
