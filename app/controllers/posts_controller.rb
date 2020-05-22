@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   # ====================================== Filters and other ====================================== #
   before_action :find_post_by_params, only: [:update, :on_like_clicked]
-  before_action :find_user_profile_by_params, only: [:new, :create]
+  before_action :find_user_profile_by_params, only: [:new, :create, :on_like_clicked]
 
   # ====================================== Actions ====================================== #
 
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   # =================== Custom Actions ===================
   def on_like_clicked
-    @like = Like.where(author_id: current_user.profile.id, post_id: @post.id).first
+    @like = Like.where(author_id: @user_profile.id, post_id: @post.id).first
     if @like.blank?
       @like = Like.new
       @like.post = @post

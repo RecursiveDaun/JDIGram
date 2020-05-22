@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function() {
 // Like clicked
 $(document).on('click', '.like-link', function(e) {
     e.preventDefault();
-    let post_id = $(this).attr('post_id')
+    let post_id = $(this).attr('post_id');
     $.ajax({
         url: `/posts/${post_id}/on_like_clicked`,
         type: 'GET',
