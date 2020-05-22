@@ -1,8 +1,9 @@
-- if current_user.profile.id == params[:id].to_i
-  = button_to 'Edit profile', edit_user_profile_path(@profile), method: :get, class: 'btn btn-light', id: 'edit-profile-button'
-- else
-  - is_followed = Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.profile.id).first.present?
-  = button_to conversation_index_path(@profile), method: :post, class: 'bt-info-button', id: 'open-conversation-button', hidden: !is_followed, profile_id: @profile.id do
-    %i.fa.fa-envelope
-  = button_to user_profile_follow_unfollow_path(@profile), method: :post, class: "#{ is_followed ? "bt-secondary-button" : "bt-info-button"}", id: 'follow-unfollow-button', profile_id: @profile.id do
-    %i{:class => "#{is_followed ? "fa fa-user-minus" : "fa fa-user-plus"}"}
+#user-profile-action-buttons.d-flex.justify-content-end.align-items-center
+  - if current_user.profile.id == params[:id].to_i
+    = link_to 'Edit profile', edit_user_profile_path(@profile), method: :get, class: 'btn btn-light', id: 'edit-profile-button'
+  - else
+    - is_followed = Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.profile.id).first.present?
+    = link_to conversation_index_path(@profile), method: :post, class: 'bt-info-button', id: 'open-conversation-button', hidden: !is_followed do
+      %i.fa.fa-envelope
+    = link_to user_profile_follow_unfollow_path(@profile), method: :post, remote: true, class: "#{ is_followed ? "bt-secondary-button" : "bt-info-button"}", id: 'follow-unfollow-button', profile_id: @profile.id do
+      %i{class: "#{is_followed ? "fa fa-user-minus" : "fa fa-user-plus"}"}

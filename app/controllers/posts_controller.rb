@@ -47,7 +47,10 @@ class PostsController < ApplicationController
       Like.destroy(@like.id)
     end
 
-    render json: { likes_count: "#{@post.likes.count}" }
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def add_comment

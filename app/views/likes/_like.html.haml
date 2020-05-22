@@ -1,0 +1,9 @@
+.d-flex.flex-row.align-items-center{:id => "likes-to-post-#{post.id}", :style => "height: 40px;"}
+  = link_to '#', class: "like-link", style: "margin-left: 15px;", post_id: post.id do
+    - if post.likes.where(author_id: current_user.profile.id).present?
+      -# Filled heart
+      %i.fa.fa-heart.filled-heart-icon
+    - else
+      -# Empty heart
+      %i.far.fa-heart.unfilled-heart-icon
+    %span{:id => "likes-count-span-#{post.id}", :class => "likes-count-span"}= post.likes.count

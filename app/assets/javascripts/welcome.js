@@ -26,10 +26,7 @@ $(document).on('click', '.like-link', function(e) {
     let post_id = $(this).attr('post_id');
     $.ajax({
         url: `/posts/${post_id}/on_like_clicked`,
-        type: 'GET',
-        success: function (data) {
-            $(`#likes-count-label-${post_id}`).text(data.likes_count)
-        }
+        type: 'GET'
     })
 });
 

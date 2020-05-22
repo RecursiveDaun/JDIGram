@@ -1,9 +1,29 @@
 .comment-author {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(25, 25, 25);
+}
 
+a.comment-author,
+a.comment-author:hover{
+  text-decoration: none;
+  color: rgb(25, 25, 25);
 }
 
 .comment-body {
+  margin-left: 4px;
   font-size: 14px;
   color: #2E2F30;
-  font-weight: 400;
+  font-weight: 300;
+}
+
+@media all and (max-width: 1000px) {
+  .comment-author {
+    font-size: 12px;
+  }
+
+  .comment-body {
+    font-size: 12px;
+  }
+
 }

@@ -7,9 +7,10 @@ Rails.application.routes.draw do
 
   resources :welcome, only: [:index]
   resources :user_profile, only: [:new, :show, :edit, :update] do
-    post 'follow_unfollow', to: 'user_profile#follow_unfollow'
     get 'friends', to: 'user_profile#friends'
+    post 'follow_unfollow', to: 'user_profile#follow_unfollow'
   end
+
   resources :posts, only: [:new, :create, :update, :destroy] do
     member do
       get :on_like_clicked

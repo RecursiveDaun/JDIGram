@@ -1,7 +1,5 @@
 -# comment as params
-.row.comment-row
+.row
   .col-lg-12
-    .row
-      = link_to comment.author.name, user_profile_path(comment.author)
-    .row
-      %span.comment-body= comment.text
+    = link_to comment.author.name, user_profile_path(comment.author), class: 'comment-author'
+    %span.comment-body= comment.text

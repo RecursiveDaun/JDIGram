@@ -39,15 +39,17 @@ class UserProfileController < ApplicationController
   # ======================== Custom Actions ========================
   # Follow/Unfollow to/from params[:profile_id] user
   def follow_unfollow
-    friendship = Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.user_profile.id).first
+    friendship = Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.profile.id).first
     if friendship.present?
       friendship.destroy
-      render json: { is_follow: "false" }
     else
       friendship = Friendship.new
-      friendship.update_attributes(owner_id: @profile.id, follower_id: current_user.user_profile.id)
+      friendship.update_attributes(owner_id: @profile.id, follower_id: current_user.profile.id)
       friendship.save
-      render json: { is_follow: "true" }
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -65,7 +67,7 @@ class UserProfileController < ApplicationController
   private
 
   def find_user_profile_by_params
-    profile_id = params[:id] || params[:profile_id]
+    profile_id = params[:id] || params[:profile_id] || params[:user_profile_id]
     if is_id_number?(profile_id)
       @profile = UserProfile.find(profile_id)
     else

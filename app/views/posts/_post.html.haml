@@ -13,10 +13,7 @@
 
         -# Add Like
         .row
-          .d-flex.flex-row.align-items-center{:style => "height: 40px;"}
-            = link_to '#', class: "like-link", style: "margin-left: 15px;", post_id: post.id do
-              %i.fa.fa-heart
-              %label{:id => "likes-count-label-#{post.id}"}= post.likes.count
+          = render partial: 'likes/like', locals: { post: post }
 
         .row
           .light-gray-horizontal-separator
