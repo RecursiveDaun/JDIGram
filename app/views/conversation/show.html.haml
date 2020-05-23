@@ -1,13 +1,18 @@
 .container
-  .row
-    .col-lg-12{:id => "messages_#{@conversation.id}", :data-conversation-id => "#{@conversation.id}"}
-      - @conversation.messages.each do |message|
-        = render partial: 'message/message', locals: { message: message }
-  -# Send new message
-  .row.mt-4.mb-5
+  .row.mb-5
     .col-lg-3
-    .col-lg-6.white-background.soft-rounded-borders
-      .input-group
-        = text_area_tag :body, nil, class: 'form-control custom-control', id: 'new-message-text-area'
-        %button.input-group-addon.btn.btn-primary#send-message{:data => {:conversation_id => "#{@conversation.id}"} }= "Send"
+    .col-lg-6.px-0.messages-column{:data-conversation-id => "#{@conversation.id}"}
+      .row
+        .col-lg-12.text-center
+          %span Chat with #{@conversation.author.name}
+      .d-flex.mb-0.px-0
+        .col-lg-12.px-0.mx-0{style: "border-top: 1px solid gray;"}
+          .row.mx-0
+            .col-lg-12{:id => "messages_#{@conversation.id}"}
+              - @conversation.messages.each do |message|
+                = render partial: 'message/message', locals: { message: message }
+            -# Send message
+          .input-group.pt-5
+            = text_area_tag :body, nil, class: 'form-control custom-control', id: 'new-message-text-area'
+            %button#send-message.input-group-addon.btn.btn-primary{:data => {:conversation_id => "#{@conversation.id}"} }= "Send"
     .col-lg-3
