@@ -2,10 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.conversation-container,
 .messages-container{
   background-color: white;
-  min-height: 100vh;
 }
 
 .conversation-latest-message-row {
@@ -16,4 +14,16 @@ a.conversation-preview-link,
 a.conversation-preview-link:hover{
   color: black;
   text-decoration: none;
+}
+
+.conversation-image-avatar-link-to-profile {
+  width: 40px;
+  height: 40px;
+  vertical-align: center;
+}
+
+.conversation-chat-companion-avatar-section {
+  display: inline;
+  align-self: center;
+  width: 50px !important;
 }

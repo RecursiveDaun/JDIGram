@@ -4,8 +4,8 @@ class ConversationController < ApplicationController
 
   def index
     @conversations = Conversation.where('author_id = ? OR receiver_id = ?',
-                                        current_user.user_profile.id,
-                                        current_user.user_profile.id)
+                                        current_user.profile.id,
+                                        current_user.profile.id)
   end
 
   def show
@@ -17,13 +17,13 @@ class ConversationController < ApplicationController
 
   def create
     conversation = Conversation.where('author_id IN (?, ?) AND receiver_id IN (?, ?)',
-                                      current_user.user_profile.id,
+                                      current_user.profile.id,
                                       params[:format],
-                                      current_user.user_profile.id,
+                                      current_user.profile.id,
                                       params[:format]).first
     if conversation.blank?
       conversation = Conversation.new
-      conversation.update_attributes(author_id: current_user.user_profile.id, receiver_id: fetch_receiver_id_from_params)
+      conversation.update_attributes(author_id: current_user.profile.id, receiver_id: fetch_receiver_id_from_params)
       conversation.save
     end
 

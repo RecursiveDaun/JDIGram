@@ -2,7 +2,7 @@
   - author = UserProfile.find(message.author_id)
   .col-lg-3
   .col-lg-1.text-center.white-background
-    = button_to profile_path(author), method: :get, class: 'button_avatar_link_to_profile align-middle mt-2' do
+    = button_to user_profile_path(author), method: :get, class: 'button_avatar_link_to_profile align-middle mt-2' do
       = image_tag author.avatar.attached? ? author.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
   .col-lg-5.text-left.white-background
     .row

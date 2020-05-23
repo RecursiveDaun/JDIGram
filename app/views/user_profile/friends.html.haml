@@ -1,17 +1,15 @@
 .container
   .row
-    .col-lg-12.text-center
-      %h3= 'Following'
-  .row
-    .col-lg-12
+    .col-lg-4
+    .col-lg-4.friends-list-column
       - @friends.each do |friend|
         .row.mt-3
-          .col-lg-4
+          .col-lg-12.friend-short-info-column
             // Avatar-link
             - if friend.avatar.attached?
-              = image_tag friend.avatar, class: 'avatar_photo', width: 150, height: 150
+              = image_tag friend.avatar, class: 'friends-list-avatar-photo'
             - else
-              = image_tag 'user_avatar_placeholder.png', class: 'avatar_photo', width: 150, height: 150
+              = image_tag 'user_avatar_placeholder.png', class: 'friends-list-avatar-photo'
             // Name in profile link
             = link_to friend.name, user_profile_path(friend), class: 'link_to_profile'
-          .col-lg-8
+    .col-lg-4

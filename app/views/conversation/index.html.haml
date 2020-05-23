@@ -1,18 +1,21 @@
-.container.conversation-container
-  - @conversations.each do |conv|
-    - chat_companion = conv.author == current_user.user_profile ? conv.receiver : conv.author
-    = link_to conversation_path(conv.id), class: 'conversation-preview-link' do
-      .row.mt-3.conversation-short-info-row
-        .col-lg-1.text-left
-          = button_to conversation_path(conv), method: :get, class: 'button_avatar_link_to_profile align-middle mt-2' do
-            = image_tag chat_companion.avatar.attached? ? chat_companion.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
-        .col-lg-11.text-left
-          -# Chat companion name
-          .row
-            %span= chat_companion.name
-          -# The latest message
-          .row.conversation-latest-message-row
-            - if conv.messages.last.present?
-              %label= conv.messages.last.body
-            - else
-              %label= "No messages with this user"
+.container
+  .row
+    .col-lg-2
+    .col-lg-7.pt-2.pb-4{style: "background-color: white; min-height: 90vh;"}
+      - @conversations.each do |conv|
+        - chat_companion = conv.author == current_user.profile ? conv.receiver : conv.author
+        = link_to conversation_path(conv.id), class: 'conversation-preview-link' do
+          .d-flex.mb-3
+            .col-lg-1.text-right.conversation-chat-companion-avatar-section
+              = image_tag chat_companion.avatar.attached? ? chat_companion.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
+            .col-lg-11.text-left
+              -# Chat companion name
+              .row
+                %span= chat_companion.name
+              -# The latest message
+              .row.conversation-latest-message-row.my-0.py-0
+                - if conv.messages.last.present?
+                  %span= conv.messages.last.body
+                - else
+                  %span= "No messages with this user"
+    .col-lg-3
