@@ -1,8 +1,10 @@
-.row.pl-2
+-#.row.pl-2.pb-2
+.d-flex.flex-row.justify-content-start.mx-0.px-0.pb-2
   - author = UserProfile.find(message.author_id)
-  .col-lg-1.text-center
-    = button_to user_profile_path(author), method: :get, class: 'button_avatar_link_to_profile align-middle mt-2' do
-      = image_tag author.avatar.attached? ? author.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile'
+  .col-lg-1.text-right{style: "width: 50px; padding-left: 0px; padding-right: 10px; align-self: center;"}
+    -# = button_to user_profile_path(author), method: :get, class: 'button_avatar_link_to_profile align-middle mt-2' do
+    = link_to user_profile_path(author), method: :get, class: 'button_avatar_link_to_profile', style: 'align-self: center;' do
+      = image_tag author.avatar.attached? ? author.avatar : 'user_avatar_placeholder.png', class: 'avatar_link_to_profile', style: 'vertical-align: center;'
   .col-lg-11.text-left
     .row
       = link_to author.name, user_profile_path(author.id)
