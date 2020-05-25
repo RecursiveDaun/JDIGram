@@ -100,4 +100,5 @@ Rails.application.configure do
   config.log_formatter = MyLogFormatter.new
 
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  config.factory_bot.definition_file_paths = ["spec/factories"]
 end

@@ -49,6 +49,13 @@ gem 'rails_refactor'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 4.0'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
+  gem 'capybara'
+
 end
 
 group :development do
