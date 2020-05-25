@@ -5,5 +5,5 @@
     - is_followed = Friendship.where('owner_id = ? AND follower_id = ?', @profile.id, current_user.profile.id).first.present?
     = link_to conversation_index_path(@profile), method: :post, class: 'bt-info-button', id: 'open-conversation-button', hidden: !is_followed do
       %i.fa.fa-envelope
-    = link_to user_profile_follow_unfollow_path(@profile), method: :post, remote: true, class: "#{ is_followed ? "bt-secondary-button" : "bt-info-button"}", id: 'follow-unfollow-button', profile_id: @profile.id do
+    = link_to "#", method: :post, remote: true, class: "#{ is_followed ? "bt-secondary-button" : "bt-info-button"}", id: 'follow-unfollow-button', profile_id: @profile.id do
       %i{class: "#{is_followed ? "fa fa-user-minus" : "fa fa-user-plus"}"}

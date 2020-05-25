@@ -96,15 +96,33 @@
 
 // Friends
 .friends-list-avatar-photo {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 .friends-list-column {
-  background-color: #CCCCCC;
   min-height: 100vh;
+  background-color: white;
 }
 
-.friend-short-info-column {
-  border-bottom: 1px solid red;
+.unfollow-button-div {
+  display: inline-block;
+  align-self: center;
+}
+
+.unfollow-button {
+  width: 90px;
+  height: 25px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 5px;
+  vertical-align: center;
+}
+
+.following-list-header {
+  font-size: 16px;
+  font-weight: 600;
 }

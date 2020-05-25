@@ -1,15 +1,23 @@
 .container
   .row
     .col-lg-4
-    .col-lg-4.friends-list-column
-      - @friends.each do |friend|
-        .row.mt-3
-          .col-lg-12.friend-short-info-column
-            // Avatar-link
-            - if friend.avatar.attached?
-              = image_tag friend.avatar, class: 'friends-list-avatar-photo'
-            - else
-              = image_tag 'user_avatar_placeholder.png', class: 'friends-list-avatar-photo'
-            // Name in profile link
-            = link_to friend.name, user_profile_path(friend), class: 'link_to_profile'
+    .col-lg-4.friends-list-column.px-0
+      .d-flex.flex-row.align-items-center.px-0{style: "height: 50px; border-bottom: 1px solid rgb(219, 219, 219);"}
+        .col-lg-12.px-0.text-center
+          %span{class: "my-0 following-list-header"} Following
+      .row
+        .col-lg-12
+          - @friends.each do |friend|
+            .d-flex.flex-row.mt-3.px-2
+              .col-lg-8.text-left.friend-short-info-column
+                // Avatar-link
+                - if friend.avatar.attached?
+                  = image_tag friend.avatar, class: 'friends-list-avatar-photo'
+                - else
+                  = image_tag 'user_avatar_placeholder.png', class: 'friends-list-avatar-photo'
+                // Name in profile link
+                = link_to friend.name, user_profile_path(friend), class: 'link_to_profile'
+              .col-lg-4.text-right.unfollow-button-div
+                = link_to user_profile_follow_unfollow_path(friend), method: :post, remote: true do
+                  %button{class: "unfollow-button", id: "unfollow-button"} Unfollow
     .col-lg-4

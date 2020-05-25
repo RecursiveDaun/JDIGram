@@ -35,7 +35,7 @@
                 Profile
               .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
                 = link_to "Profile", user_profile_path(current_user.profile), class: 'dropdown-item'
-                = link_to "Friends", user_profile_friends_path(current_user.profile), class: 'dropdown-item'
+                = link_to "Following", user_profile_friends_path(current_user.profile), class: 'dropdown-item'
                 = link_to "Conversations",  conversation_index_path, class: 'dropdown-item'
             %li.nav-item
               = link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link'
