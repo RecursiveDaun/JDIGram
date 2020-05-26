@@ -4,6 +4,12 @@ google_dev:
   credentials: <%= Rails.root.join("config/secrets/jdigram_gcs.json") %>
   bucket: jdigram
 
+google_test:
+  service: GCS
+  project: JDIGram
+  credentials: <%= Rails.root.join("config/secrets/jdigram_gcs.json") %>
+  bucket: jdigram
+
 google:
   service: GCS
   project: JDIGram
