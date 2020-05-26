@@ -6,7 +6,7 @@
       .col-lg-4
         .row.pt-2
           -#.col-lg-12
-          = f.text_field :name, placeholder: 'Your name', class: 'form-control'
+          = f.text_field :name, placeholder: 'Your name', class: 'form-control', value: @profile.name
         .row.pt-2
           -#.col-lg-12
           = f.text_field :age, placeholder: 'Your age', class: 'form-control', value: @profile.age
