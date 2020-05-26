@@ -32,6 +32,17 @@ describe "Dialog page", type: :feature, js: true do
       expect(page).to have_no_css(".message-body")
     end
 
+    # Send new message
+    fill_in "new-message-text-area", with: "new message"
+    click_button "Send"
+
+    # New message info
+    expect(page).to have_css(".button_avatar_link_to_profile")
+    expect(page).to have_css(".avatar_link_to_profile")
+    expect(page).to have_css(".message-author")
+    expect(page).to have_css(".message-time")
+    expect(page).to have_css(".message-body")
+
   end
 
 end
