@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-2
-    .col-lg-7.pt-2.pb-4{style: "background-color: white; min-height: 90vh;"}
+    .col-lg-7.pt-2.pb-4.conversations-list-column
       - @conversations.each do |conv|
         - chat_companion = conv.author == current_user.profile ? conv.receiver : conv.author
         = link_to conversation_path(conv.id), class: 'conversation-preview-link' do
@@ -11,11 +11,11 @@
             .col-lg-11.text-left
               -# Chat companion name
               .row
-                %span= chat_companion.name
+                %span{class: "conversation-companion-name"}= chat_companion.name
               -# The latest message
               .row.conversation-latest-message-row.my-0.py-0
                 - if conv.messages.last.present?
-                  %span= conv.messages.last.body
+                  %span{class: "conversation-last-message"}= conv.messages.last.body
                 - else
                   %span= "No messages with this user"
     .col-lg-3

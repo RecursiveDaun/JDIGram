@@ -6,6 +6,11 @@
   background-color: white;
 }
 
+.conversations-list-column {
+  background-color: white;
+  min-height: 90vh;
+}
+
 .conversation-latest-message-row {
   border-bottom: 1px solid gray;
 }
@@ -26,4 +31,12 @@ a.conversation-preview-link:hover{
   display: inline;
   align-self: center;
   width: 50px !important;
+}
+
+.conversation-companion-name {
+
+}
+
+.conversation-last-message {
+
 }
