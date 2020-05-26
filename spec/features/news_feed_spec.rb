@@ -23,6 +23,7 @@ describe "News feed", type: :feature, js: true do
 
     # Like pannel
     expect(page).to have_css(".like-link")
+    expect(page).to have_css("i.fa.fa-heart.filled-heart-icon, i.far.fa-heart.unfilled-heart-icon")
     expect(page).to have_css(".likes-count-span")
 
     # Comment
