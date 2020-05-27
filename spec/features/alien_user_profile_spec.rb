@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe "Alien user profile page", type: :feature, js: true do
-
   include_context "sign in helper"
+
   it "should contain" do
     # User profile page
     current_user_profile = current_user.profile

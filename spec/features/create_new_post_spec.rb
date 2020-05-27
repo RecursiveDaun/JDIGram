@@ -1,15 +1,11 @@
 require 'rails_helper'
 
 describe "Create new post", type: :feature, js: true do
+  include_context "sign in helper"
 
-  let(:profile) { UserProfile.first }
   it "should contain" do
-    visit '/'
-    # Sign in with existing user
-    fill_in :user_login, with: 'first'
-    fill_in :user_password, with: '123123'
-    click_button 'Sign in'
 
+    profile = FactoryBot.create(:user).profile
     # User profile page
     visit new_post_path(profile)
 
