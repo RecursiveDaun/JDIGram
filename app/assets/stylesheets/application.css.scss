@@ -18,7 +18,9 @@
 @import "font-awesome";
 @import "bootstrap";
 
-.notice-container,
+.notice-container {
+  margin-top: 56px;
+}
 .container {
   margin-top: 100px;
 }
