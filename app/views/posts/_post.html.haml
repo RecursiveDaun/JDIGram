@@ -21,10 +21,17 @@
         -# Post description
         .row
           .col-lg-12
+            = link_to post.author.name, user_profile_path(post.author), class: 'comment-author'
             %span.post-description= post.description
 
         .row
           .light-gray-horizontal-separator
+
+        -# List of comments to the post
+        .row.pt-2.mb-3
+          .col-lg-12{:id => "comments-to-post-#{post.id}"}
+            - post.comments.each do |comment|
+              = render partial: 'partials/comments/comment', locals: { comment: comment }
 
         -# Add comment
         .row.my-0
@@ -32,11 +39,4 @@
             .input-group
               = text_area_tag :comment_text, nil, class: 'form-control custom-control', id: "comment-text-area-#{post.id}"
               %button.input-group-addon.btn.btn-primary#add-comment-button{:data => {:post_id => "#{post.id}"} }= "Add"
-
-        -# List of comments to the post
-        - if post.comments.present?
-          .row.pt-2.mb-3
-            .col-lg-12{:id => "comments-to-post-#{post.id}"}
-              - post.comments.each do |comment|
-                = render partial: 'partials/comments/comment', locals: { comment: comment }
   .col-lg-2

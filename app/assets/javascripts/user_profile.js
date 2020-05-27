@@ -3,7 +3,6 @@ $(document).on('click', 'a#follow-unfollow-button', function(e) {
 
     // Follow/Unfollow button tapped
     e.preventDefault();
-    console.log("QWE");
     let profile_id = $(this).attr('profile_id');
     $.ajax({
         url: `/user_profile/${profile_id}/follow_unfollow`,
