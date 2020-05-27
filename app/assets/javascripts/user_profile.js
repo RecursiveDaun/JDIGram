@@ -1,16 +1,16 @@
-$(document).on('turbolinks:load', function() {
+// Follow/Unfollow button were tapped
+$(document).on('click', 'a#follow-unfollow-button', function(e) {
 
     // Follow/Unfollow button tapped
-    $('#follow-unfollow-button').on('click', function (e) {
-        e.preventDefault();
-        let profile_id = $(this).attr('profile_id');
-        $.ajax({
-            url: `/user_profile/${profile_id}/follow_unfollow`,
-            type: 'POST'
-        })
-    });
-
+    e.preventDefault();
+    console.log("QWE");
+    let profile_id = $(this).attr('profile_id');
+    $.ajax({
+        url: `/user_profile/${profile_id}/follow_unfollow`,
+        type: 'POST'
+    })
 });
+
 
 
 function show_profile_avatar_preview(input) {
