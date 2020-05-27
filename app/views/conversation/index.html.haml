@@ -17,5 +17,5 @@
                 - if conv.messages.last.present?
                   %span{class: "conversation-last-message"}= conv.messages.last.body
                 - else
-                  %span= "No messages with this user"
+                  %span{class: "conversation-last-message"}= "No messages with this user"
     .col-lg-3

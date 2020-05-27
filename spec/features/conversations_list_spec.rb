@@ -1,35 +1,33 @@
 require 'rails_helper'
 
 describe "Conversations list page", type: :feature, js: true do
+  include_context "sign in helper"
 
-  let(:current_user) { User.where(nickname: 'first').first }
-  let(:current_user_profile) { current_user.profile }
+  it "should not contain any conversation data" do
+    visit conversation_index_path
+    expect(page).to have_css(".conversations-list-column")
 
-  it "should contain dialogs list if they exist or shouldn't contain if they doesn't exist" do
-    visit '/'
-    # Sign in with existing user
-    fill_in :user_login, with: current_user.nickname
-    fill_in :user_password, with: '123123'
-    click_button 'Sign in'
+    expect(page).not_to have_css(".conversations-list-column .avatar_link_to_profile")
+    expect(page).not_to have_css(".conversation-companion-name")
+    expect(page).not_to have_css(".conversation-latest-message-row")
+    expect(page).not_to have_css(".conversation-last-message")
+  end
 
+  it "should contain dialogs list" do
     # Conversations list
     visit conversation_index_path
-
     expect(page).to have_css(".conversations-list-column")
-    # If conversations are exists, then our page should contain their preview data
-    if Conversation.where('author_id = ? OR receiver_id = ?', current_user_profile.id, current_user_profile.id).count > 0
-      expect(page).to have_css("img.avatar_link_to_profile")
-      expect(page).to have_css(".conversation-companion-name")
-      expect(page).to have_css(".conversation-latest-message-row")
-      expect(page).to have_css(".conversation-last-message")
-    # Else we should display nothing
-    else
-      expect(page).to have_no_css("img.avatar_link_to_profile")
-      expect(page).to have_no_css(".conversation-companion-name")
-      expect(page).to have_no_css(".conversation-latest-message-row")
-      expect(page).to have_no_css(".conversation-last-message")
-    end
 
+    current_user_profile = current_user.profile
+    alien_user_profile = FactoryBot.create(:user).profile
+
+    # Creating a new conversations and checks this page for css elements
+    FactoryBot.create(:conversation, :author_id => current_user_profile.id, :receiver_id => alien_user_profile.id).save!
+    visit conversation_index_path
+    expect(page).to have_css("img.avatar_link_to_profile")
+    expect(page).to have_css(".conversation-companion-name")
+    expect(page).to have_css(".conversation-latest-message-row")
+    expect(page).to have_css(".conversation-last-message")
   end
 
 end
