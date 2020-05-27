@@ -35,24 +35,11 @@ $(document).on('click', '.like-link', function(e) {
 $(document).on('click', '#add-comment-button', function(e) {
     e.preventDefault();
     let post_id = $(this).data('post-id');
-    console.log("add comment");
     $.ajax({
         url: `/posts/${post_id}/add_comment`,
         type: 'POST',
         data: {
             comment_text: $(`#comment-text-area-${post_id}`).val()
-        },
-        success: function (data) {
-            console.log(post_id);
-            $(`#comment-text-area-${post_id}`).val("");
-            $(`#comments-to-post-${post_id}`).append(`
-                <div class="row">
-                    <div class="col-lg-12">
-                        <a href="/profile/${data.author_id}" class="comment-author"> ${data.username} </a>
-                        <span class="comment-body">${data.comment_text}</span>
-                    </div>
-                </div>
-            `);
         }
     })
 });

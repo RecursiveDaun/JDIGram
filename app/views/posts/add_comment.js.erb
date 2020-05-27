@@ -1,0 +1,2 @@
+$(`#comment-text-area-<%= @comment.post.id %>`).val("");
+$(`#comments-to-post-<%= @comment.post.id %>`).append("<%= j render partial: 'partials/comments/comment', locals: { comment: @comment } %>")

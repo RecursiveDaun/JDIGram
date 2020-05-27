@@ -63,10 +63,13 @@ class PostsController < ApplicationController
                                post_id: params[:id],
                                author_id: current_user.profile.id)
     @comment.save
-    current_user_profile = current_user.profile
-    render json: { username: current_user_profile.name,
-                   author_id: current_user_profile.id,
-                   comment_text: comment_text }
+
+    respond_to do |format|
+      format.js
+    end
+    # render json: { username: current_user_profile.name,
+    #                author_id: current_user_profile.id,
+    #                comment_text: comment_text }
   end
 
   # ====================================== Private Methods ====================================== #
