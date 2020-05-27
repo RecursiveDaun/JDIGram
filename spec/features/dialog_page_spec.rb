@@ -1,36 +1,25 @@
 require 'rails_helper'
 
 describe "Dialog page", type: :feature, js: true do
+  include_context "sign in helper"
 
-  let(:current_user) { User.where(nickname: 'first').first }
-  let(:conversation) { Conversation.where('author_id = ? OR receiver_id = ?', current_user.profile.id, current_user.profile.id).first }
-
-  it "should contain messages" do
-    visit '/'
-    # Sign in with existing user
-    fill_in :user_login, with: current_user.nickname
-    fill_in :user_password, with: '123123'
-    click_button 'Sign in'
-
+  it "should not contain messages" do
+    conversation = create_conversation
     visit conversation_path(conversation)
 
     expect(page).to have_css(".messages-column")
     expect(page).to have_css(".conversation-companion-name")
     expect(page).to have_css("#messages_#{conversation.id}")
 
-    if conversation.messages.count > 0
-      expect(page).to have_css(".button_avatar_link_to_profile")
-      expect(page).to have_css(".avatar_link_to_profile")
-      expect(page).to have_css(".message-author")
-      expect(page).to have_css(".message-time")
-      expect(page).to have_css(".message-body")
-    else
-      expect(page).to have_no_css(".button_avatar_link_to_profile")
-      expect(page).to have_no_css(".avatar_link_to_profile")
-      expect(page).to have_no_css(".message-author")
-      expect(page).to have_no_css(".message-time")
-      expect(page).to have_no_css(".message-body")
-    end
+    expect(page).not_to have_css("#messages_#{conversation.id} .button_avatar_link_to_profile")
+    expect(page).not_to have_css(".message-author")
+    expect(page).not_to have_css(".message-time")
+    expect(page).not_to have_css(".message-body")
+  end
+
+  it "should send and display new message" do
+    conversation = create_conversation
+    visit conversation_path(conversation)
 
     # Send new message
     fill_in "new-message-text-area", with: "new message"
@@ -42,7 +31,17 @@ describe "Dialog page", type: :feature, js: true do
     expect(page).to have_css(".message-author")
     expect(page).to have_css(".message-time")
     expect(page).to have_css(".message-body")
+  end
 
+  def create_conversation
+    alien_user_profile = FactoryBot.create(:user).profile
+    FactoryBot.create(:conversation,
+                      :author_id => current_user.profile.id,
+                      :receiver_id => alien_user_profile.id).save!
+    conversation = Conversation.where('author_id = ? OR receiver_id = ?',
+                                      current_user.profile.id,
+                                      current_user.profile.id).first
+    return conversation
   end
 
 end
