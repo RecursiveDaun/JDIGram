@@ -41,5 +41,5 @@ describe "Current user profile page", type: :feature, js: true do
     expect(page).to have_field('user_profile_age', with: "#{profile.age}")
     expect(page).to have_css("#profile_avatar_label")
   end
-  
+
 end
