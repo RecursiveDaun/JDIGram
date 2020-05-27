@@ -1,17 +1,14 @@
 require 'rails_helper'
 
 describe "Current user profile page", type: :feature, js: true do
+  include_context "sign in helper"
 
-  let(:profile) { UserProfile.first }
-  it "should contain" do
-    visit '/'
-    # Sign in with existing user
-    fill_in :user_login, with: 'first'
-    fill_in :user_password, with: '123123'
-    click_button 'Sign in'
+  before do
+    visit user_profile_path(current_user.profile)
+  end
 
-    # User profile page
-    visit user_profile_path(profile)
+  it "should contain user info without any post" do
+    profile = current_user.profile
 
     expect(page).to have_css(".avatar-photo")
 
@@ -22,19 +19,28 @@ describe "Current user profile page", type: :feature, js: true do
     expect(page).to have_content("#{Friendship.where("follower_id = #{profile.id}").count} following")
 
     expect(page).to have_content("Create new post")
-    if profile.posts.present?
-      expect(page).to have_css(".dark-horizontal-separator")
-      expect(page).to have_content("#{profile.name} posts".upcase)
-      expect(page).to have_css(".user-posts-grid-column")
-      expect(page).to have_css("img.user-profile-post-image")
-    else
-      expect(page).to have_no_css(".dark-horizontal-separator")
-      expect(page).to have_no_content("#{profile.name} posts".upcase)
-      expect(page).to have_no_css(".user-posts-grid-column")
-      expect(page).to have_no_css("img.user-profile-post-image")
-    end
 
-    # Test edit profile
+    expect(page).not_to have_css(".dark-horizontal-separator")
+    expect(page).not_to have_content("#{profile.name} posts".upcase)
+    expect(page).not_to have_css(".user-posts-grid-column")
+    expect(page).not_to have_css("img.user-profile-post-image")
+  end
+
+  it "should contain user posts" do
+    profile = current_user.profile
+    FactoryBot.create(:post, :user_profile_id => profile.id).save!
+    visit user_profile_path(current_user.profile)
+
+    expect(page).to have_css(".dark-horizontal-separator")
+    expect(page).to have_content("#{profile.name} posts".upcase)
+    expect(page).to have_css(".user-posts-grid-column")
+    expect(page).to have_css("img.user-profile-post-image")
+
+  end
+
+  it "should edit user profile" do
+    profile = current_user.profile
+
     click_on("Edit profile")
     expect(page).to have_content("Edit your profile")
     expect(page).to have_field('user_profile_name', with: "#{profile.name}")
