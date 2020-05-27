@@ -1,13 +1,15 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  url: <%= ENV['DATABASE_URL'] %>
+
 
 development:
   <<: *default
+  database: jdi_gram_database
 
 test:
   <<: *default
+  database: project_test
 
 production:
   <<: *default
