@@ -1,7 +1,4 @@
 %ul
-  - if @users.present?
-    - @users.each do |user|
-      %li= link_to user.nickname, profile_path(User.find(user.id).user_profile)
-  - if @user_profiles.present?
-    - @user_profiles.each do |profile|
-      %li= link_to profile.name, profile_path(profile)
+  - if @users_profiles.present?
+    - @users_profiles.each do |profile|
+      %li= link_to profile.name, user_profile_path(profile)
