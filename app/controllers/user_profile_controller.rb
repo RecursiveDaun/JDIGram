@@ -1,7 +1,7 @@
 class UserProfileController < ApplicationController
 
   # ======================== Filters ========================
-  before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow_unfollow, :friends]
+  before_action :find_user_profile_by_params, only: [:show, :edit, :update, :follow_unfollow, :friends, :unfollow]
 
   # ======================== Display ========================
 
@@ -61,6 +61,13 @@ class UserProfileController < ApplicationController
       @friends.push(UserProfile.find(f.owner_id))
     end
     @friends.delete_at(0)
+  end
+
+  def unfollow
+    friend_id = params[:friend_id]
+    friendship = Friendship.where('owner_id = ? AND follower_id = ?', friend_id, @profile.id).first
+    friendship.delete
+    redirect_to user_profile_friends_path
   end
 
   # ======================== Private Methods ========================

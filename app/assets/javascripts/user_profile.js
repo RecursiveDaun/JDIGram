@@ -1,7 +1,5 @@
 // Follow/Unfollow button were tapped
 $(document).on('click', 'a#follow-unfollow-button', function(e) {
-
-    // Follow/Unfollow button tapped
     e.preventDefault();
     let profile_id = $(this).attr('profile_id');
     $.ajax({
@@ -9,8 +7,6 @@ $(document).on('click', 'a#follow-unfollow-button', function(e) {
         type: 'POST'
     })
 });
-
-
 
 function show_profile_avatar_preview(input) {
     if (input.files && input.files[0]) {

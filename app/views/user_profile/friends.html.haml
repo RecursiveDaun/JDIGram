@@ -18,6 +18,8 @@
                 // Name in profile link
                 = link_to friend.name, user_profile_path(friend), class: 'link_to_profile'
               .col-lg-4.text-right.unfollow-button-div
-                = link_to user_profile_follow_unfollow_path(friend), method: :post, remote: true do
+                = link_to "friends/#{friend.id}/unfollow", method: :post, remote: true do
                   %button{class: "unfollow-button", id: "unfollow-button"} Unfollow
+                -# = link_to user_profile_follow_unfollow_path(friend), method: :post, remote: true, profile_id: friend.id do
+                -#   %button{class: "unfollow-button", id: "unfollow-button"} Unfollow
     .col-lg-4

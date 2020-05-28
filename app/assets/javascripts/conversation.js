@@ -15,6 +15,14 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
 
 });
 
+$(document).on('click', 'a#unfollow-button', function(e) {
+    e.preventDefault();
+    let profile_id = $(this).attr('profile_id');
+    $.ajax({
+        url: `/user_profile/${profile_id}/follow_unfollow`,
+        type: 'POST'
+    })
+});
 
 $(document).on('turbolinks:load', function() {
     

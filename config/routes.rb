@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :user_profile, only: [:new, :show, :edit, :update] do
     get 'friends', to: 'user_profile#friends'
     post 'follow_unfollow', to: 'user_profile#follow_unfollow'
+    post 'friends/:friend_id/unfollow', to: 'user_profile#unfollow'
   end
 
   resources :posts, only: [:new, :create, :update, :destroy] do
