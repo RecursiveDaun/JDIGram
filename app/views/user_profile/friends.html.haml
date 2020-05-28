@@ -10,7 +10,7 @@
           - @friends.each do |friend|
             .d-flex.flex-row.mt-3.px-2
               .col-lg-8.text-left.friend-short-info-column
-                // Avatar-link
+                // Friend profile avatar
                 - if friend.avatar.attached?
                   = image_tag friend.avatar, class: 'friends-list-avatar-photo'
                 - else
